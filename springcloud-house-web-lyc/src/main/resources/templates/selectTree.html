@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <!-- 引入juquery -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap.css">
+    <script type="text/javascript"src="/bootstrap3/js/bootstrap.js"></script>
+    <script src="/js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/js/bootStrap-addTabs/bootstrap.addtabs.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">蛋壳公寓后台管理系统</a>
+        </div>
+        <div class="navbar-brand pull-right" style="text-align:center">
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <div id="myTree"></div>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+            <div id="myTabs">
+                <ul class="nav nav-tabs" id="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" role="tab" data-toggle="tab">欢迎</a>
+                    </li>
+                </ul>
+
+                <!-- 选项卡下内容 -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        欢迎使用
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+    $(function(){
+        initTree();
+    })
+
+    function initTree(){
+        $.ajax({
+            url:'/goto/findTree',
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                $('#myTree').treeview({
+                    data:data,
+                    onNodeSelected:function(event, node) {
+                        $.addtabs({iframeHeight: $(window).height()-120});
+                        $.addtabs.add({
+                            id:node.id,
+                            title:node.text,
+                            url:node.href
+
+                        });
+
+                    }
+                })
+            }
+        })
+    }
+</script>
+</html>
