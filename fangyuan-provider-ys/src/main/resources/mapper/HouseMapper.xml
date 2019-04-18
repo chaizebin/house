@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.HouseMapper" >
+
+   <select id="selectHouseList"  resultType="com.jk.model.HouseBean">
+select
+t.id,
+t.houseId,
+t.houseNumber,
+t.coveredArea,
+tt.name as typeName,
+ho.name as orientationName,
+sb.subwayName as subway,
+sb1.subwayName as station,
+ta1.name as provinceName,
+ta2.name as cityName
+      from house_house t
+			left join house_subway sb on t.subway = sb.id
+			left join house_subway sb1 on t.station = sb1.id
+		  left join house_type tt on t.houseType=tt.id
+		  left join house_area ta1 on t.province=ta1.id
+		  left join house_area ta2 on t.city=ta2.id
+      left join house_orientation ho on t.orientation=ho.id
+       limit  #{start},#{rows}
+   </select>
+
+   <select id="queryHouseTotal"  resultType="long">
+       select count(*) from house_house
+   </select>
+
+    <delete id="deleteHouseById" >
+        delete FROM  house_house where id =#{id}
+    </delete>
+    <delete id="delAllHouse">
+        delete from house_house  where id IN
+        <foreach collection="array" open="(" close=")" item="houseIds" index="index" separator=",">
+            #{houseIds}
+        </foreach>
+    </delete>
+
+    <select id="selectHouseById" resultType="com.jk.model.HouseBean" parameterType="Integer">
+        select * from  house_house where id=#{id}
+    </select>
+    <update id="updateNews">
+        update house_house
+        <set>
+            <if test="houseBean.houseId !=null and  houseBean.houseId !='' ">
+                houseId=#{houseBean.houseId} ,
+            </if>
+        </set>
+        where  id=#{houseBean.id}
+    </update>
+</mapper>

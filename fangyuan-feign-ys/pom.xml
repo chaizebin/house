@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jk</groupId>
-    <artifactId>fangyuan-provider-ys</artifactId>
+    <artifactId>fangyuan-feign-ys</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fangyuan-provider-ys</name>
+    <name>fangyuan-feign-ys</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -20,11 +20,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.jk</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -37,6 +32,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <dependency>
