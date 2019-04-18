@@ -1,7 +1,8 @@
 package com.jk.service;
 
-import com.jk.model.HouseBean;
+import com.jk.model.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +20,22 @@ public interface HouseService {
     void delAllHouse(String ss);
 
     HouseBean selectHouseById(Integer id);
+
+
+
+
+
+    void insertHouse(HouseBean houseBean);
+
+    List<HouseAreaBean> selArea(Integer pid);
+
+    List<HouseTypeBean> huxing();
+
+    List<HouseOrientationBean> chaoxiang();
+
+    List<HouseSubwayBean> selSubway(Integer pid);
+
+    HouseBean updHouseInfoById(Integer id);
 
     void updateHouse(HouseBean houseBean);
 }

@@ -17,4 +17,9 @@ public class PageController {
     public String toList(){
         return "list";
     }
+
+    @RequestMapping("addHouse")
+    public String addHouse(){
+        return "addHouse";
+    }
 }

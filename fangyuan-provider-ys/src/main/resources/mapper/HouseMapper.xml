@@ -41,13 +41,48 @@ ta2.name as cityName
     <select id="selectHouseById" resultType="com.jk.model.HouseBean" parameterType="Integer">
         select * from  house_house where id=#{id}
     </select>
-    <update id="updateNews">
-        update house_house
-        <set>
-            <if test="houseBean.houseId !=null and  houseBean.houseId !='' ">
-                houseId=#{houseBean.houseId} ,
-            </if>
-        </set>
-        where  id=#{houseBean.id}
-    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <update id="updateHouse" parameterType="com.jk.model.HouseBean">
+   update house_house set houseNumber=#{houseNumber},coveredArea=#{coveredArea},houseType=#{houseType},orientation=#{orientation},
+   subway=#{subway},station=#{station},province=#{province},city=#{city} where id=#{id}
+  </update>
+
+    <select id="updHouseInfoById" parameterType="int" resultType="com.jk.model.HouseBean">
+    select * from house_house where id=#{id}
+  </select>
+
+    <select id="selSubway" resultType="com.jk.model.HouseSubwayBean">
+    select * from house_subway where pid = #{value}
+  </select>
+
+    <select id="chaoxiang" resultType="com.jk.model.HouseOrientationBean">
+    select * from house_orientation
+  </select>
+
+    <select id="huxing" resultType="com.jk.model.HouseTypeBean">
+    select * from house_type
+  </select>
+
+    <select id="selArea" resultType="com.jk.model.HouseAreaBean">
+    select * from house_area where pid = #{value}
+  </select>
+
+    <insert id="insertHouse" parameterType="com.jk.model.HouseBean">
+    insert into house_house (houseNumber,coveredArea,houseType,orientation,subway,station,province,city)
+    values(#{houseNumber},#{coveredArea},#{houseType},#{orientation},#{subway},#{station},#{province},#{city})
+  </insert>
 </mapper>

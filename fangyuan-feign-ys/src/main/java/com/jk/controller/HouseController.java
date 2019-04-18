@@ -1,11 +1,12 @@
 package com.jk.controller;
 
-import com.jk.model.HouseBean;
+import com.jk.model.*;
 import com.jk.service.HouseServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,5 +53,47 @@ public class HouseController {
     public  void updateHouse(@RequestBody HouseBean houseBean){
         System.out.println(houseBean);
         houseServiceFeign.updateHouse(houseBean);
+    }
+
+
+
+
+
+
+
+    @GetMapping("updHouseInfoById")
+    @ResponseBody
+    public HouseBean updHouseInfoById(Integer id){
+        return houseServiceFeign.updHouseInfoById(id);
+    }
+
+    @GetMapping("selSubway")
+    @ResponseBody
+    public List<HouseSubwayBean> selSubway(Integer pid){
+        return houseServiceFeign.selSubway(pid);
+    }
+
+    @GetMapping("chaoxiang")
+    @ResponseBody
+    public List<HouseOrientationBean> chaoxiang(){
+        return houseServiceFeign.chaoxiang();
+    }
+
+    @GetMapping("huxing")
+    @ResponseBody
+    public List<HouseTypeBean> huxing(){
+        return houseServiceFeign.huxing();
+    }
+
+    @GetMapping("selArea")
+    @ResponseBody
+    public List<HouseAreaBean> selArea(Integer pid){
+        return houseServiceFeign.selArea(pid);
+    }
+
+    @RequestMapping("insertHouse")
+    @ResponseBody
+    public void insertHouse(HouseBean houseBean){
+        houseServiceFeign.insertHouse(houseBean);
     }
 }

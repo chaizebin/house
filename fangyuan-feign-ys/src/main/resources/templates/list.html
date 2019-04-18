@@ -23,6 +23,7 @@
 </head>
 <body>
 <div  id="toolbar">
+    <button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="openEmp()">新增</button>
         <button onclick="addDialog()" type="button" class="btn btn-primary glyphicon glyphicon-plus">新增</button>
     <button onclick="delAllHouse()" type="button" class="btn btn-warning glyphicon glyphicon-remove">删除</button>
 </div>
@@ -261,5 +262,227 @@
     }
 
 
+
+
+
+
+
+
+    function openEmp(){
+        var url='/page/addHouse'
+        var dialog = bootbox.dialog({
+            title: '新增房屋',
+            message: createAddContent(url),
+            size: 'large',
+            buttons: {
+                cancel: {
+                    label: "关闭",
+                    className: 'btn-danger',
+                    callback: function(){
+                        console.log('Custom cancel clicked');
+                    }
+                },
+
+                ok: {
+                    label: "保存",
+                    className: 'btn-info',
+                    callback: function(){
+                        $.ajax({
+                            url:'/house/insBook',
+                            type:'post',
+                            data:$("#bookForm").serialize(),
+                            dataType:'json',
+                            success:function(data){
+                                if(data){
+                                    sousuo();
+                                }else{
+                                    alert("新增失败")
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    }
+
+    function updHouse(id){
+        //打开修改弹框
+        openupdDialog();
+        //初始化表单
+        initTypeSelect();
+        initOrientationSelect();
+        initSubwaySelect(0,'subway');
+
+        initAreaSelect(0,'province');
+        //查询回显数据
+        $.ajax({
+            url:'/house/updHouseInfoById',
+            type:'post',
+            data:{
+                id:id
+            },
+            dataType:'json',
+            success:function(data){
+                $("#id").val(data.id);
+                $("#houseNumber").val(data.houseNumber);
+                $("#coveredArea").val(data.coveredArea);
+                $("#houseType").val(data.houseType);
+                $("#orientation").val(data.orientation);
+                $("#province").val(data.province);
+                $("#city").val(data.city);
+                $("#bigCity").val(data.bigCity);
+                $("#subway").val(data.subway);
+                $("#region").val(data.region);
+            }
+        })
+    }
+
+    function openupdDialog(){
+        var url='/page/updHouse'
+        bootbox.dialog({
+            title: '修改图书',
+            message: createAddContent(url),
+            size: 'large',
+            buttons: {
+                cancel: {
+                    label: "关闭",
+                    className: 'btn-danger',
+                    callback: function(){
+                        console.log('Custom cancel clicked');
+                    }
+                },
+                ok: {
+                    label: "保存",
+                    className: 'btn-info',
+                    callback: function(){
+                        $.ajax({
+                            url:'/house/insertHouse',
+                            type:'post',
+                            data:$("#bookForm").serialize(),
+                            dataType:'json',
+                            success:function(data){
+                                if(data){
+                                    sousuo();
+                                }else{
+                                    alert("修改失败")
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    }
+
+    $("#province").change(function(){
+        var id=$(this).val();
+        initAreaSelect(id,'city');
+    })
+
+    $("#city").change(function(){
+        var ids=$(this).val();
+        initBigCitySelect(ids,'bigCity');
+    })
+
+    function initAreaSelect(pid,obj){
+        $.ajax({
+            url:'/house/selArea',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败1")
+            }
+        })
+    }
+
+    function initBigCitySelect(pid,obj){
+        $.ajax({
+            url:'/house/selArea',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败2")
+            }
+        })
+    }
+
+    //地铁线路
+    $("#subway").change(function(){
+        var id=$(this).val();
+        initSubwaySelect(id,'region');
+    })
+    function initSubwaySelect(pid,obj){
+        $.ajax({
+            url:'/house/selSubway',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].subwayName+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败3")
+            }
+        })
+    }
+
+    function initTypeSelect(){
+        $.ajax({
+            url:'/house/huxing',
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+                }
+                $("#houseType").html(html);
+            }
+        })
+    }
+
+    function initOrientationSelect(){
+        $.ajax({
+            url:'/house/chaoxiang',
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+                }
+                $("#orientation").html(html);
+            }
+        })
+    }
 </script>
 </html>

@@ -1,12 +1,13 @@
 package com.jk.service;
 
-import com.jk.model.HouseBean;
+import com.jk.model.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,4 +33,18 @@ public interface HouseServiceFeign {
 
     @PutMapping("updateHouse")
     void updateHouse(HouseBean houseBean);
+
+
+
+    HouseBean updHouseInfoById(Integer id);
+
+    List<HouseSubwayBean> selSubway(Integer pid);
+
+    List<HouseOrientationBean> chaoxiang();
+
+    List<HouseTypeBean> huxing();
+
+    List<HouseAreaBean> selArea(Integer pid);
+
+    void insertHouse(HouseBean houseBean);
 }
