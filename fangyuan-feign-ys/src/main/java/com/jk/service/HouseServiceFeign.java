@@ -36,15 +36,5 @@ public interface HouseServiceFeign {
 
 
 
-    HouseBean updHouseInfoById(Integer id);
 
-    List<HouseSubwayBean> selSubway(Integer pid);
-
-    List<HouseOrientationBean> chaoxiang();
-
-    List<HouseTypeBean> huxing();
-
-    List<HouseAreaBean> selArea(Integer pid);
-
-    void insertHouse(HouseBean houseBean);
 }

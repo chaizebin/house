@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients("com.jk.*")
-@ComponentScan("com.jk.*")
 public class FangyuanFeignYsApplication {
 
     public static void main(String[] args) {

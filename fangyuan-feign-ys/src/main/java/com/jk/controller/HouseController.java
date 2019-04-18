@@ -58,42 +58,4 @@ public class HouseController {
 
 
 
-
-
-
-    @GetMapping("updHouseInfoById")
-    @ResponseBody
-    public HouseBean updHouseInfoById(Integer id){
-        return houseServiceFeign.updHouseInfoById(id);
-    }
-
-    @GetMapping("selSubway")
-    @ResponseBody
-    public List<HouseSubwayBean> selSubway(Integer pid){
-        return houseServiceFeign.selSubway(pid);
-    }
-
-    @GetMapping("chaoxiang")
-    @ResponseBody
-    public List<HouseOrientationBean> chaoxiang(){
-        return houseServiceFeign.chaoxiang();
-    }
-
-    @GetMapping("huxing")
-    @ResponseBody
-    public List<HouseTypeBean> huxing(){
-        return houseServiceFeign.huxing();
-    }
-
-    @GetMapping("selArea")
-    @ResponseBody
-    public List<HouseAreaBean> selArea(Integer pid){
-        return houseServiceFeign.selArea(pid);
-    }
-
-    @RequestMapping("insertHouse")
-    @ResponseBody
-    public void insertHouse(HouseBean houseBean){
-        houseServiceFeign.insertHouse(houseBean);
-    }
 }
