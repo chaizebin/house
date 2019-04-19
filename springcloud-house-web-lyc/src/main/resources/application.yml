@@ -21,7 +21,7 @@ redis:
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
   thymeleaf:
     encoding: UTF-8
