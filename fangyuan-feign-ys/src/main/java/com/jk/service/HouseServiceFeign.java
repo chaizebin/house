@@ -26,15 +26,15 @@ public interface HouseServiceFeign {
     void deleteHouseById(@RequestParam("id") Integer id);
 
     @DeleteMapping("delAllHouse")
-    void delAllHouse(@RequestParam("ss") String ss);
+        void delAllHouse(@RequestParam("ss") String ss);
 
-    @GetMapping("selectHouseById")
+@GetMapping("selectHouseById")
     HouseBean selectHouseById(@RequestParam("id") Integer id);
 
-    @PutMapping("updateHouse")
+@PutMapping("updateHouse")
     void updateHouse(HouseBean houseBean);
 
 
 
 
-}
+            }
