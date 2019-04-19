@@ -25,17 +25,5 @@ public interface HouseService {
 
 
 
-    void insertHouse(HouseBean houseBean);
 
-    List<HouseAreaBean> selArea(Integer pid);
-
-    List<HouseTypeBean> huxing();
-
-    List<HouseOrientationBean> chaoxiang();
-
-    List<HouseSubwayBean> selSubway(Integer pid);
-
-    HouseBean updHouseInfoById(Integer id);
-
-    void updateHouse(HouseBean houseBean);
 }

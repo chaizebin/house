@@ -62,38 +62,5 @@ public class HouseServiceImpl implements HouseService {
 
 
 
-    @Override
-    public void insertHouse(HouseBean houseBean) {
-        houseMapper.insertHouse(houseBean);
-    }
 
-    @Override
-    public List<HouseAreaBean> selArea(Integer pid) {
-        return houseMapper.selArea(pid);
-    }
-
-    @Override
-    public List<HouseTypeBean> huxing() {
-        return houseMapper.huxing();
-    }
-
-    @Override
-    public List<HouseOrientationBean> chaoxiang() {
-        return houseMapper.chaoxiang();
-    }
-
-    @Override
-    public List<HouseSubwayBean> selSubway(Integer pid) {
-        return houseMapper.selSubway(pid);
-    }
-
-    @Override
-    public HouseBean updHouseInfoById(Integer id) {
-        return houseMapper.updHouseInfoById(id);
-    }
-
-    @Override
-    public void updateHouse(HouseBean houseBean) {
-        houseMapper.updateHouse(houseBean);
-    }
 }
