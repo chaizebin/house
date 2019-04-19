@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.TreeMapper">
+
+    <select id="findTreeByPid" resultType="com.jk.model.TreeBean" parameterType="int">
+       select * from house_tree where pid=#{pid}
+    </select>
+    <!--<select id="findShoppingCount" resultType="int">
+        SELECT count(1) from news_comments
+    </select>
+
+    <select id="findShoppingPage" resultType="com.jk.model.Comments">
+        select * from news_comments where 1=1  LIMIT #{start},#{rows}
+    </select>-->
+
+    <!--发货查询条件查询-->
+    <!--<sql id="Article">
+        <if test="comments.userName!='' and comments.userName!=null">
+            and userName like '%${comments.userName}%'
+        </if>
+       &lt;!&ndash;<if test="deliveryQuery.purchaser!='' and deliveryQuery.purchaser!=null">
+            and purchaser like '%${deliveryQuery.purchaser}%'
+        </if>
+        <if test="deliveryQuery.startorderTime!='' and deliveryQuery.startorderTime!=null">
+            and order_time>=#{deliveryQuery.startorderTime}
+        </if>
+        <if test="deliveryQuery.endorderTime!='' and deliveryQuery.endorderTime!=null">
+            and order_time &lt;=#{deliveryQuery.endorderTime}
+        </if>&ndash;&gt;
+    </sql>-->
+    <!--<insert id="addGoods" parameterType="com.jk.model.Goods">
+        insert into drug_newest_goods(img,specification,price,function,manufacturer,name)
+        values (#{img},#{specification},#{price},#{function},#{manufacturer},#{name})
+    </insert>
+
+    <update id="updateGoods" parameterType="com.jk.model.Goods">
+        update drug_newest_goods set img=#{img},specification=#{specification},price=#{price},
+        function=#{function},manufacturer=#{manufacturer},name=#{name} where id=#{id}
+    </update>
+
+    <select id="queryGoodById" resultType="com.jk.model.Goods">
+        select * from drug_newest_goods where id=#{id}
+    </select>
+
+    <delete id="deleteGood" parameterType="com.jk.model.Goods">
+        delete from drug_newest_goods where id=#{id}
+    </delete>-->
+    <!--<update id="updateGoods" parameterType="com.jk.pojo.Goods">
+        update drug_newest_goods set img=#{img},specification=#{specification},price=#{price},
+        function=#{function},manufacturer=#{manufacturer},name=#{name} where id=#{id}
+    </update>
+    <select id="selectGoodsById" resultType="com.jk.pojo.Goods">
+        select * from drug_newest_goods where id=#{id}
+    </select>-->
+    <!--<select id="queryTest" resultType="com.jk.pojo.Test">
+        select *  from t_test
+    </select>-->
+    <!--<insert id="saveShop" parameterType="com.jk.pojo.Shop">
+        insert into t_shop(productCode,shopCommodity,shopSpec,manufacturer,licenseNumber,shopPrice,inventory,promotion) values(#{productCode},#{shopCommodity},#{shopSpec},#{manufacturer},#{licenseNumber},#{shopPrice},
+        #{inventory},#{promotion})
+    </insert>
+    <select id="selectShopById" resultType="com.jk.pojo.Shop">
+        select * from t_shop where shopId = #{id}
+    </select>
+    <update id="updateShop" parameterType="com.jk.pojo.Shop">
+        update t_shop set productCode=#{productCode},shopCommodity=#{shopCommodity},shopSpec=#{shopSpec},manufacturer=#{manufacturer},
+        licenseNumber=#{licenseNumber},shopPrice=#{shopPrice},inventory=#{inventory},promotion=#{promotion} where shopId= #{shopId}
+    </update>
+
+    <delete id="deleteShopById" >
+
+          delete from t_shop where shopId = #{id}
+    </delete>-->
+</mapper>
