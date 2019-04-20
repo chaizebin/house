@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <!--bootstrap3 css 和js-->
+    <link rel="stylesheet" href="/js/bootstrap3/css/bootstrap.css" />
+    <script type="text/javascript" src="/js/bootstrap3/js/bootstrap.js"></script>
+    <!-- 表格组件 -->
+    <link rel="stylesheet" href="/js/bootstrap-table/bootstrap-table.css">
+    <script src="/js/bootstrap-table/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!--bootbox组件-->
+    <script src="/js/bootstrap-bootbox/bootbox.js"></script>
+    <!--日期组件-->
+    <script src="/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script src="/js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="/js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-fileinput/css/fileinput.css">
+</head>
+<body>
+<div  id="toolbar">
+        <button onclick="addDialog()" type="button" class="btn btn-primary glyphicon glyphicon-plus">新增</button>
+    <button onclick="delAllHouse()" type="button" class="btn btn-warning glyphicon glyphicon-remove">删除</button>
+</div>
+
+
+<div class="table" id="myTable"></div>
+</body>
+
+<script type="text/javascript"  th:inline="none">
+    //初始化方法
+    $(function(){
+        search();
+    })
+    //查询
+    function search(){
+        $('#myTable').bootstrapTable({
+            url:'/houseFeign/selectHousePage',  //获取数据地址
+            toolbar:'#toolbar',
+            pagination:true, //是否展示分页
+            pageList:[1,5,10,20],//分页组件
+            pageNumber:1,
+            pageSize:3,//默认每页条数
+            sidePagination:"server",
+            queryParams:function(){
+                return{
+                        page: this.pageNumber,
+                        rows: this.pageSize
+                }
+            },
+            columns:[
+                {field:"全选",checkbox:true},
+                {field:'id',title:'房屋id',},
+                {field:'houseId',title:'租房id'},
+                {field:'houseNumber',title:'房屋编号'},
+                {field:'typeName',title:'房屋类型'},
+                {field:'orientationName',title:'房屋方向'},
+                {field: 'provinceName', title: '所属地区', formatter:function (value, row, index){
+                        return  value+"-"+row.cityName;
+                    }},
+                {field:'coveredArea',title:'面积'},
+                {field: 'subway', title: '地铁线路', formatter:function (value, row, index){
+                        return  value+"-"+row.station;
+                    }},
+
+                {field:'tool',title:'操作',align:'center',width:'50px',
+                    formatter: function(value,row,index){
+                        var str = '<a href="javascript:queryInvenById('+row.id+')">修改</a> ';
+                        return str;
+                    }
+                }
+            ]
+        });
+    }
+
+
+    /**
+     * 修改加回显
+     */
+    function   queryInvenById(id){
+        alert(id);
+        bootbox.dialog({
+            title:'修改',
+            message: createAddConten("/tree/toUpdate"),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        $.ajax({
+                            url:'/page/toUpdate',
+                            type:'post',
+                            contentType:"application/json",
+                            data:JSON.stringify({'newsName':newsName,'releaseTime':releaseTime,'typeId':typeId}),
+                            success:function(data){
+                                $('#myTable').bootstrapTable('refresh');
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+
+        });
+
+        //回显数据
+        $.ajax({
+            url:'/pro/queryProById',
+            type:'post',
+            data:{
+                proId:proId
+            },
+            success:function(data){
+                alert(data);
+                $('#ids').val(data.proId);
+                /* $('input[name="sex"]').each(function(){
+                    var sexId = $(this).val();
+                    if(sexId == data.sex){
+                        $(this).prop('checked','true');
+                    }
+                }) */
+                $('#proName').val(data.proName);
+            }
+        })
+    }
+
+    var res;
+    function createAddConten(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+
+
+    //添加选项卡
+    function addDialog(){
+        bootbox.dialog({
+            title:'添加商品',
+            message: createAddContent("/tree/toInsert"),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        $.ajax({
+                            url:'/pro/addPro',
+                            type:'post',
+                            contentType:'application/json',
+                            data:JSON.stringify({'newsId':newsId,'newsName':newsName,'releaseTime':releaseTime,'typeId':typeId}),
+                            success:function(data){
+                                $('#myTable').bootstrapTable('refresh');
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+
+        });
+
+
+        var res;
+        function createAddContent(url){
+            $.ajax({
+                url:url,
+                async:false,
+                success:function(data){
+                    res = data;
+                }
+            });
+            return res;
+        }
+    }
+
+    //单删加批量删除
+    function   delAllHouse(){
+        var ids = $('#myTable').bootstrapTable('getSelections'); //获取表选择的行
+        if(ids.length==0){
+            bootbox.alert({
+                size: "small",
+                title: "提示",
+                message: "请选择要删除的选项",
+                buttons:{
+                    ok:{
+                        label: '确定',
+                        className: 'btn-success'
+                    }
+                },
+                callback:function(){}
+            })
+
+        }else{
+
+
+            var houseIds =[];
+            for ( var i  in ids) {
+                houseIds.push(ids[i].id);
+            }
+            alert(houseIds);
+            console.log(houseIds);
+
+            bootbox.confirm({
+                size: "small",
+                title: "提示",
+                message: "您确定删除这"+houseIds.length+"条信息吗",
+                buttons: {
+                    confirm: {
+                        label: '确定',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    var   ss= houseIds.toString();
+                   message: "类型是："+typeof(ss)+"，字符串是："+ss;
+                    if(result){
+                        $.ajax({
+                            url:"/houseFeign/delAllHouse",
+                            type:"DELETE",
+                            data:{ss:ss},
+                            success:function(){
+                                alert('删除成功')
+                                $("#myTable").bootstrapTable("refresh");//刷新表格
+                            },error:function(){
+                                alert("代码错误");
+                            }
+
+                        });
+
+                    }
+
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+</script>
+</html>

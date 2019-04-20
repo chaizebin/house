@@ -1,2 +1,7 @@
 com\jk\model\TreeBean.class
 com\jk\App.class
+com\jk\model\HouseOrientationBean.class
+com\jk\model\HouseAreaBean.class
+com\jk\model\HouseTypeBean.class
+com\jk\model\HouseBean.class
+com\jk\model\HouseSubwayBean.class

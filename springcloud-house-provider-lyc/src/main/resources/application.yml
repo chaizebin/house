@@ -14,7 +14,7 @@ spring:
     initial-size: 1
     max-active: 5
     password: root
-    url: jdbc:mysql://192.168.43.99:3306/house?characterEncoding=utf-8&useSSL=false&serverTimezone=Hongkong
+    url: jdbc:mysql://192.168.1.132:3306/house?characterEncoding=utf-8&useSSL=false&serverTimezone=Hongkong
     username: root
     jpa:
     database: mysql

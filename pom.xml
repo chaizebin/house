@@ -10,8 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
-  <module>springcloud-house-provider-lyc</module>
-    <module>springcloud-house-web-lyc</module>
+        <module>eureka</module>
+        <module>springcloud-house-provider-lyc</module>
+        <module>springcloud-house-web-lyc</module>
+        <module>fangyuan-feign-ys</module>
+        <module>fangyuan-provider-ys</module>
     </modules>
 
 
