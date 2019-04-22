@@ -11,7 +11,7 @@
     <groupId>com.jk</groupId>
     <artifactId>hetong_feign_wxy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hetong_feign_wxy</name>
+    <name>springcloud_feign_wxy</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -21,8 +21,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>com.jk</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,6 +42,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.api</groupId>
+            <artifactId>k12-alipay-sdk</artifactId>
+            <version>0.0.1-beta</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
         </dependency>
     </dependencies>
 
