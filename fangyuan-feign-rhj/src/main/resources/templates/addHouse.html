@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>新增页面</title>
+    <script src="/js/jquery.min.js"></script>
+    <!-- 引入bootstrap的css、js -->
+    <link rel="stylesheet" href="/js/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="/js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="/bootstrap3/css/bootstrap.css">
+    <script type="text/javascript" src="/bootstrap3/js/bootstrap.js"></script>
+    <script src="/js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="/js/bootstrap-bootbox/bootbox.js"></script>
+    <style type="text/css">
+        .myrow{
+            margin-bottom:10px
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+        <form  id="houseForm" class="form-horizontal">
+            <input type="hidden" name="id" id="id">
+            <div class="form-group">
+                <div class="row myrow">
+
+                <label for="houseNumber" class="col-sm-2  control-label">房屋编号</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="houseNumber" name="houseNumber">
+                </div>
+
+                <label for="coveredArea" class="col-sm-2  control-label">房屋建筑面积</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="coveredArea" name="coveredArea">
+                </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="coveredArea" class="col-sm-2  control-label">房屋条件</label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="1">集中供暖
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="2">已空置30天
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="3">独立阳台
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="4">自采暖
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="5">独立卫生间
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="6">独立淋浴
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="7">首次出粗
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  value="8">中央空调
+                </label>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="floor" class="col-sm-2  control-label">楼层</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="floor" name="floor">
+                </div>
+
+                <label for="price" class="col-sm-2  control-label">月租金</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="price" name="price">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="houseType" class="col-sm-2  control-label">户型</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="houseType"  name="houseType">
+                    </select>
+                </div>
+
+                <label for="orientation" class="col-sm-2  control-label">朝向</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="orientation"  name="orientation">
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="province" class="col-sm-2  control-label">所属区</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="province"  name="province">
+                    </select>
+                </div>
+
+                <label for="city" class="col-sm-2  control-label"></label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="city"  name="city" >
+                    </select>
+                </div>
+
+                <label for="bigCity" class="col-sm-2  control-label"></label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="bigCity"  name="bigCity" >
+                    </select>
+                </div>
+
+                <label for="housing" class="col-sm-2  control-label">小区名称</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="housing" name="housing">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="subway" class="col-sm-2  control-label">地铁</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="subway"  name="subway">
+                    </select>
+                </div>
+
+                <label for="station" class="col-sm-2  control-label"></label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="station"  name="station" >
+                    </select>
+                </div>
+
+                <label for="meter" class="col-sm-2  control-label">距离多远</label>
+                <div class="col-sm-4">
+                    <input type="text"  class="form-control" id="meter" name="meter">
+                </div>
+            </div>
+    </form>
+</div>
+</body>
+<script>
+
+    $(function(){
+        initTypeSelect();
+        initOrientationSelect();
+        initSubwaySelect(0,'subway');
+
+        initAreaSelect(0,'province');
+
+    })
+   $("#province").change(function(){
+        var id=$(this).val();
+        initAreaSelect(id,'city');
+    })
+
+    $("#city").change(function(){
+        var ids=$(this).val();
+        initBigCitySelect(ids,'bigCity');
+    })
+
+    function initAreaSelect(pid,obj){
+        $.ajax({
+            url:'/house/selArea',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败1")
+            }
+        })
+    }
+
+    function initBigCitySelect(pid,obj){
+        $.ajax({
+            url:'/house/selArea',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败2")
+            }
+        })
+    }
+
+    //地铁线路
+    $("#subway").change(function(){
+        var id=$(this).val();
+        initSubwaySelect(id,'station');
+    })
+    function initSubwaySelect(pid,obj){
+        $.ajax({
+            url:'/house/selSubway',
+            type:'get',
+            data:{
+                pid:pid
+            },
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for(var i=0; i<data.length; i++){
+                    html +="<option value='"+data[i].id+"'>"+data[i].subwayName+"</option>"
+                }
+                $("#"+obj).html(html);
+            },
+            error:function(){
+                alert("加载失败3")
+            }
+        })
+    }
+
+
+    function initTypeSelect(){
+        $.ajax({
+            url:'/house/huxing',
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+                }
+                $("#houseType").html(html);
+            }
+        })
+    }
+
+    function initOrientationSelect(){
+        $.ajax({
+            url:'/house/chaoxiang',
+            type:'get',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                var html='<option value="-1">请选择</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+                }
+                $("#orientation").html(html);
+            }
+        })
+    }
+
+</script>
+</html>

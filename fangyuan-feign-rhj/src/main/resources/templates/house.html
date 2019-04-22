@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+	<script src="/js/jquery.min.js"></script>
+	<!-- 引入bootstrap的css、js -->
+	<link rel="stylesheet" href="/js/bootstrap-table/bootstrap-table.css">
+	<script type="text/javascript" src="/js/bootstrap-table/bootstrap-table.js"></script>
+	<link rel="stylesheet" href="/bootstrap3/css/bootstrap.css">
+	<script type="text/javascript" src="/bootstrap3/js/bootstrap.js"></script>
+	<script src="/js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+	<link rel="stylesheet" href="/js/bootstrap-treeview/bootstrap-treeview.min.css">
+	<script src="/js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+	<link rel="stylesheet" href="/js/bootStrap-addTabs/bootstrap.addtabs.css">
+	<script src="/js/bootstrap-bootbox/bootbox.js"></script>
+</head>
+<body>
+<div id="toolbar">
+    <button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="openEmp()">新增</button>
+	<button onclick="delAllHouse()" type="button" class="btn btn-warning glyphicon glyphicon-remove">删除</button>
+</div>
+
+<table class="table" id="myTable"></table>
+
+</body>
+
+<script>
+	$(function(){
+		search();
+	})
+	//查询
+	function search(){
+		$('#myTable').bootstrapTable({
+			url:'/house/selectHousePage',  //获取数据地址
+			toolbar:'#toolbar',
+			pagination:true, //是否展示分页
+			pageList:[1,5,10,20],//分页组件
+			pageNumber:1,
+			pageSize:2,//默认每页条数
+			sidePagination:"server",
+			queryParams:function(){
+				return{
+					page: this.pageNumber,
+					rows: this.pageSize
+				}
+			},
+			columns:[
+				{field:"全选",checkbox:true},
+				{field:'id',title:'房屋id',},
+				{field:'houseId',title:'租房id'},
+				{field:'houseNumber',title:'房屋编号'},
+				{field:'coveredArea',title:'面积', formatter:function (value, row, index){
+						return "约"+value+"㎡(以现场勘察为准)";
+					}},
+				{field:'price',title:'月租金',formatter:function (value, row, index) {
+						return value+"元/月";
+					}},
+				{field:'typeName',title:'房屋类型'},
+				{field:'orientationName',title:'房屋朝向'},
+				{field:'floor',title:'楼层'},
+				{field: 'provinceName', title: '区域', formatter:function (value, row, index){
+						return  value+" "+row.cityName+" "+row.bigCityName+" "+row.housing;
+					}},
+				{field: 'subwayName', title: '地铁'},
+				{field: 'subwayName', title: '地铁:', formatter:function (value, row, index){
+						return  "距离"+value+""+row.stationName+""+row.meter+"米";
+					}},
+				{field:"adsc",title:"操作",formatter:function(value,row,index) {
+						return '<a href="javascript:updHouse('+row.id+');">修改</a>--<a href="javascript:shoucang(\'+row.id+\');">收藏</a>'
+					}}
+			 ]
+		});
+	}
+
+	//新增
+	var res;
+	function createAddContent(url){
+		$.ajax({
+			url:url,
+			async:false,
+			success:function(data){
+				res = data;
+			}
+		});
+		return res;
+	}
+
+	function openEmp(){
+		var url='/page/addHouse'
+		var dialog = bootbox.dialog({
+			title: '新增房屋',
+			message: createAddContent(url),
+			size: 'large',
+			buttons: {
+				cancel: {
+					label: "关闭",
+					className: 'btn-danger',
+					callback: function(){
+						console.log('Custom cancel clicked');
+					}
+				},
+				ok: {
+					label: "保存",
+					className: 'btn-info',
+					callback: function(){
+						$.ajax({
+							url:'/house/insertHouse',
+							type:'post',
+							data:$("#houseForm").serialize(),
+							dataType:'json',
+							success:function(data){
+								if(data){
+									alert("新增成功")
+								}else{
+									alert("新增失败")
+								}
+							}
+						})
+					}
+				}
+			}
+		});
+	}
+
+	//修改
+	function updHouse(id){
+		//打开修改弹框
+		openupdDialog();
+		//初始化表单
+		//initTypeSelect();
+		//initOrientationSelect();
+		initSubwaySelect(0,'subway');
+
+		initAreaSelect(0,'province');
+		//查询回显数据
+		$.ajax({
+			url:'/house/updHouseInfoById',
+			type:'get',
+			data:{
+				id:id
+			},
+			dataType:'json',
+			success:function(data){
+				$("#id").val(data.id);
+				$("#houseNumber").val(data.houseNumber);
+				$("#coveredArea").val(data.coveredArea);
+				$("#houseType").val(data.houseType);
+				$("#orientation").val(data.orientation);
+				$("#province").val(data.province);
+				$("#city").val(data.city);
+				$("#bigCity").val(data.bigCity);
+				$("#subway").val(data.subway);
+				$("#station").val(data.station);
+			}
+		})
+	}
+
+	function openupdDialog(){
+		var url='/page/updHouse'
+		bootbox.dialog({
+			title: '修改图书',
+			message: createAddContent(url),
+			size: 'large',
+			buttons: {
+				cancel: {
+					label: "关闭",
+					className: 'btn-danger',
+					callback: function(){
+						console.log('Custom cancel clicked');
+					}
+				},
+				ok: {
+					label: "保存",
+					className: 'btn-info',
+					callback: function(){
+						$.ajax({
+							url:'/house/insertHouse',
+							type:'post',
+							data:$("#houseForm").serialize(),
+							dataType:'json',
+							success:function(data){
+								if(data){
+									sousuo();
+								}else{
+									alert("修改失败")
+								}
+							}
+						})
+					}
+				}
+			}
+		});
+	}
+
+	$("#province").change(function(){
+		var id=$(this).val();
+		initAreaSelect(id,'city');
+	})
+
+	$("#city").change(function(){
+		var ids=$(this).val();
+		initBigCitySelect(ids,'bigCity');
+	})
+
+	function initAreaSelect(pid,obj){
+		$.ajax({
+			url:'/house/selArea',
+			type:'get',
+			data:{
+				pid:pid
+			},
+			dataType:'json',
+			success:function(data){
+				var html='<option value="-1">请选择</option>'
+				for(var i=0; i<data.length; i++){
+					html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+				}
+				$("#"+obj).html(html);
+			},
+			error:function(){
+				alert("加载失败1")
+			}
+		})
+	}
+
+	function initBigCitySelect(pid,obj){
+		$.ajax({
+			url:'/house/selArea',
+			type:'get',
+			data:{
+				pid:pid
+			},
+			dataType:'json',
+			success:function(data){
+				var html='<option value="-1">请选择</option>'
+				for(var i=0; i<data.length; i++){
+					html +="<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+				}
+				$("#"+obj).html(html);
+			},
+			error:function(){
+				alert("加载失败2")
+			}
+		})
+	}
+
+	//地铁线路
+	$("#subway").change(function(){
+		var id=$(this).val();
+		initSubwaySelect(id,'station');
+	})
+	function initSubwaySelect(pid,obj){
+		$.ajax({
+			url:'/house/selSubway',
+			type:'get',
+			data:{
+				pid:pid
+			},
+			dataType:'json',
+			success:function(data){
+				var html='<option value="-1">请选择</option>'
+				for(var i=0; i<data.length; i++){
+					html +="<option value='"+data[i].id+"'>"+data[i].subwayName+"</option>"
+				}
+				$("#"+obj).html(html);
+			},
+			error:function(){
+				alert("加载失败3")
+			}
+		})
+	}
+
+	function initTypeSelect(){
+		$.ajax({
+			url:'/house/huxing',
+			type:'get',
+			data:{},
+			dataType:'json',
+			success:function(data){
+				var html='<option value="-1">请选择</option>'
+				for (var i = 0; i < data.length; i++) {
+					html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+				}
+				$("#houseType").html(html);
+			}
+		})
+	}
+
+	function initOrientationSelect(){
+		$.ajax({
+			url:'/house/chaoxiang',
+			type:'get',
+			data:{},
+			dataType:'json',
+			success:function(data){
+				var html='<option value="-1">请选择</option>'
+				for (var i = 0; i < data.length; i++) {
+					html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+				}
+				$("#orientation").html(html);
+			}
+		})
+	}
+
+</script>
+</html>
