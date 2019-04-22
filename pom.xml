@@ -15,7 +15,8 @@
         <module>springcloud-house-web-lyc</module>
         <module>fangyuan-feign-ys</module>
         <module>fangyuan-provider-ys</module>
-
+        <module>hetong_feign_wxy</module>
+        <module>hetong_provider_wxy</module>
     </modules>
 
 
