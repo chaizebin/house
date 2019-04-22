@@ -21,6 +21,15 @@ public class HouseController {
     @Autowired
     private HouseService houseService;
 
+    /**
+     *
+     * @return
+     */
+    @GetMapping("selectHouse")
+    @ResponseBody
+    public List<HouseBean> selectHouse(){
+        return houseService.selectHouse();
+    }
 
     /*
     查询分页

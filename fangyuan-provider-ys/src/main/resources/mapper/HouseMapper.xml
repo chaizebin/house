@@ -2,25 +2,67 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.mapper.HouseMapper" >
 
+    <select id = "selectHouse" resultType="com.jk.model.HouseBean">
+  select
+      t.id,
+      t.houseId,
+      t.houseNumber,
+      t.coveredArea,
+      t.price,
+			hi.url,
+      t.floor,
+      t.distance,
+      tt.name as typeName,
+      ho.name as orientationName,
+      sb.subwayName as subwayName,
+      sb1.subwayName as stationName,
+      ta1.name as provinceName,
+      ta2.name as cityName,
+      ta3.name as bigCityName,
+      lb.name as lableName
+          from house_house t
+			  left join house_img hi on t.houseId = hi.houseId
+              left join house_subway sb on t.subway = sb.id
+              left join house_subway sb1 on t.station = sb1.id
+              left join house_type tt on t.houseType=tt.id
+              left join house_area ta1 on t.province=ta1.id
+              left join house_area ta2 on t.city=ta2.id
+              left join house_area ta3 on t.bigCity=ta3.id
+              left join house_orientation ho on t.orientation=ho.id
+              left join house_label lb on t.lable=lb.id
+    </select>
+
+
+
+
+
+
    <select id="selectHouseList"  resultType="com.jk.model.HouseBean">
-select
-t.id,
-t.houseId,
-t.houseNumber,
-t.coveredArea,
-tt.name as typeName,
-ho.name as orientationName,
-sb.subwayName as subway,
-sb1.subwayName as station,
-ta1.name as provinceName,
-ta2.name as cityName
-      from house_house t
-			left join house_subway sb on t.subway = sb.id
-			left join house_subway sb1 on t.station = sb1.id
-		  left join house_type tt on t.houseType=tt.id
-		  left join house_area ta1 on t.province=ta1.id
-		  left join house_area ta2 on t.city=ta2.id
-      left join house_orientation ho on t.orientation=ho.id
+ select
+      t.id,
+      t.houseId,
+      t.houseNumber,
+      t.coveredArea,
+      t.price,
+      t.floor,
+      t.distance,
+      tt.name as typeName,
+      ho.name as orientationName,
+      sb.subwayName as subwayName,
+      sb1.subwayName as stationName,
+      ta1.name as provinceName,
+      ta2.name as cityName,
+      ta3.name as bigCityName,
+      lb.name as lableName
+          from house_house t
+              left join house_subway sb on t.subway = sb.id
+              left join house_subway sb1 on t.station = sb1.id
+              left join house_type tt on t.houseType=tt.id
+              left join house_area ta1 on t.province=ta1.id
+              left join house_area ta2 on t.city=ta2.id
+              left join house_area ta3 on t.bigCity=ta3.id
+              left join house_orientation ho on t.orientation=ho.id
+              left join house_label lb on t.lable=lb.id
        limit  #{start},#{rows}
    </select>
 
@@ -44,8 +86,14 @@ ta2.name as cityName
 
 
 
+<!-- 条件查询 -->
+<sql id="selectWhere">
+    <where>
+        <if test="houseId">
 
-
+        </if>
+    </where>
+</sql>
 
 
 

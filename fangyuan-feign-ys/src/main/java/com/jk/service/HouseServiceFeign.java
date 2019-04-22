@@ -34,7 +34,6 @@ public interface HouseServiceFeign {
 @PutMapping("updateHouse")
     void updateHouse(HouseBean houseBean);
 
-
-
-
-            }
+    @GetMapping("selectHouse")
+    List<HouseBean> selectHouse();
+}

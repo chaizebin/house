@@ -1,10 +1,7 @@
 package com.jk.mapper;
 
 import com.jk.model.*;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -25,10 +22,5 @@ public interface HouseMapper {
 
     HouseBean selectHouseById(@Param("id") Integer id);
 
-
-
-
-
-
-
+    List<HouseBean> selectHouse();
 }

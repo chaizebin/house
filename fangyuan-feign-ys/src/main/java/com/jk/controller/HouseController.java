@@ -22,6 +22,18 @@ public class HouseController {
     @Autowired
     private HouseServiceFeign houseServiceFeign;
 
+    /**
+     *
+     * @return
+     */
+    @GetMapping("selectHouse")
+    @ResponseBody
+    public List<HouseBean> selectHouse(){
+        System.out.println("1");
+        return houseServiceFeign.selectHouse();
+
+    }
+
     @GetMapping("selectHousePage")
     @ResponseBody
     public Map<String,Object> selectHousePage(Integer page , Integer rows){

@@ -21,9 +21,5 @@ public interface HouseService {
 
     HouseBean selectHouseById(Integer id);
 
-
-
-
-
-
+    List<HouseBean> selectHouse();
 }

@@ -1,4 +1,4 @@
-package com.jk.controller;
+package com.jk.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -17,13 +17,12 @@ public class CorsMapping implements WebMvcConfigurer {
         registry.addMapping("/**")
                 //设置跨域 域名权限 规定由某一个指定的域名+端口能访问跨域项目
                 .allowedOrigins("*")
-
                 //是否开启cookie跨域
                 .allowCredentials(false)
                 //规定能够跨域访问的方法类型
-                .allowedMethods("GET","POST","DELETE","PUT","OPTIONS")
+                .allowedMethods("GET","POST","DELETE","PUT","OPTIONS","HEAD")
                 //添加验证头信息  token
-                .allowedHeaders("*")
+                //.allowedHeaders()
                 //预检请求存活时间 在此期间不再次发送预检请求
                 .maxAge(3600);
     }

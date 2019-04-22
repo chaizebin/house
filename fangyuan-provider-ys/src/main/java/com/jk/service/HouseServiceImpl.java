@@ -53,14 +53,9 @@ public class HouseServiceImpl implements HouseService {
         return houseMapper.selectHouseById(id);
     }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public List<HouseBean> selectHouse() {
+        return houseMapper.selectHouse();
+    }
 
 }

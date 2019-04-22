@@ -62,9 +62,12 @@
                 {field: 'provinceName', title: '所属地区', formatter:function (value, row, index){
                         return  value+"-"+row.cityName;
                     }},
+                {field:'distance',title:'距地铁站的距离'},
+                {field:'price',title:'价格'},
+                {field:'floor',title:'楼层'},
                 {field:'coveredArea',title:'面积'},
-                {field: 'subway', title: '地铁线路', formatter:function (value, row, index){
-                        return  value+"-"+row.station;
+                {field: 'subwayName', title: '地铁线路', formatter:function (value, row, index){
+                        return  value+"-"+row.stationName;
                     }},
 
                 {field:'tool',title:'操作',align:'center',width:'50px',
