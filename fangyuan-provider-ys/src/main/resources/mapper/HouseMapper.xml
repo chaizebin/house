@@ -9,7 +9,7 @@
       t.houseNumber,
       t.coveredArea,
       t.price,
-			hi.url,
+	  hi.url,
       t.floor,
       t.distance,
       tt.name as typeName,
@@ -86,14 +86,6 @@
 
 
 
-<!-- 条件查询 -->
-<sql id="selectWhere">
-    <where>
-        <if test="houseId">
-
-        </if>
-    </where>
-</sql>
 
 
 
