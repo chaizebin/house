@@ -134,4 +134,30 @@ public class UserController {
         return split[0];
     }
 
+    @GetMapping("queryUserList")
+    @ResponseBody
+    public List<UserBean> queryGoodsList() {
+        List<UserBean> list = userservice.queryUserList();
+        return list;
+    }
+
+    @PostMapping("insUserList")
+    @ResponseBody
+    public void insGoodsList(UserBean userBean){
+        userservice.insUserList(userBean);
+    }
+
+    @DeleteMapping("deleteUser")
+    @ResponseBody
+    public void deleteUser(Integer userid){
+        userservice.deleteUser(userid);
+    }
+
+    //回显
+    @GetMapping("queryUserById")
+    @ResponseBody
+    public UserBean queryUserById(Integer userid){
+        return userservice.queryUserById(userid);
+    }
+
 }

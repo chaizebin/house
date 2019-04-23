@@ -307,7 +307,8 @@
 
         <div class="selectProperties">
             <div class="selectProperties_title"></div>
-            <div id="query_div2"></div>
+            <div class="m-room js-month-room w1032 mtop50 clearfix">
+            <div id="query_div2"></div></div>
             <div class="ele-btn js-month-btn center mtop20">
                 <a href="https://www.danke.com/room/bj/g%E6%98%AF.html?search=1&amp;search_text=&amp;from=month">查看更多</a>
             </div>
@@ -1500,7 +1501,7 @@
                 var count = "";
                 for(var i=0;i<data.length;i++){
                     count+=
-                        '<div class="room-list">'+'<a class="pic" target="_blank" href="https://www.danke.com/room/774355497.html">'+'<img width="330" height="240" src='+data[i].url+' alt="精选月租房源图片">'+'</a>'+'<div class="txt">'+'<p class="price">'+data[i].price+'</p>'+'元/月'+'<a class="tit" href="https://www.danke.com/room/774355497.html">'+data[i].type+'</a>'+'<div class="ads">'+data[i].distance+'</div>'+'</div>'+'</div>'
+                        '<div class="room-list">'+'<a class="pic" target="_blank" href="https://www.danke.com/room/774355497.html">'+'<img width="260" height="200" src='+data[i].url+' alt="精选月租房源图片">'+'</a>'+'<div class="txt">'+'<p class="price">'+data[i].price+'</p>'+'元/月'+'<a class="tit" href="https://www.danke.com/room/774355497.html">'+data[i].type+'</a>'+'<div class="ads">'+data[i].distance+'</div>'+'</div>'+'</div>'
 
                 }
 
@@ -2089,7 +2090,7 @@
              listHtml:function(ele){
                  if(typeof ele != "object")return;
                  var html = ['<div class="room-list">',
-                     '<a class="pic" target="_blank" href="',ele.url,'"><img width="330" height="240" src="',ele.major_image,'" title="'+ ele.name +'" alt="精选月租房源图片" /></a>',
+                     '<a class="pic" target="_blank" href="',ele.url,'"><img width="260" height="200" src="',ele.major_image,'" title="'+ ele.name +'" alt="精选月租房源图片" /></a>',
                      '<div class="txt">',
                      '<p class="price">￥',ele.price,'<span>',ele.price_unit,'</span></p>',
                      '<a class="tit" href="',ele.url,'">',ele.name,'</a>',

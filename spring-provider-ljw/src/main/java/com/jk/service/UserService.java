@@ -16,4 +16,12 @@ public interface UserService {
     List<RoommatesBean> queryHouseyuezu();
 
     void addimg(ImgBean imgBean);
+
+    List<UserBean> queryUserList();
+
+    void insUserList(UserBean userBean);
+
+    void deleteGood(Integer userid);
+
+    UserBean queryUserById(Integer userid);
 }
