@@ -18,7 +18,14 @@
 </head>
 
 <body>
-<button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="openEmp()">合同</button>
+<form class="form-inline" >
+    <div class="form-group">
+        <label for="leaser2">出租人</label>
+        <input type="text" class="form-control" id="leaser2" placeholder="请输入名称">
+    </div>
+    <button type="button" class="btn btn-primary glyphicon glyphicon-search" onclick="searchUser()">搜索</button>
+    <button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="openEmp()">合同</button>
+</form>
 <table class="table" id="myTable">
 
 
@@ -28,7 +35,9 @@
     $(function(){
         initUserTable();//初始化用户表格数据
     })
-
+    function searchUser() {
+        $('#myTable').bootstrapTable("refresh");
+    }
     function initUserTable(){
         $('#myTable').bootstrapTable({
             url:"/queyrContract",
@@ -38,10 +47,13 @@
             pageNumber:1,
             pageSize:3,//默认每页条数
             sidePagination:"server",
+
             queryParams:function(){
                 return{
                     page: this.pageNumber,
-                    rows: this.pageSize
+                    rows: this.pageSize,
+                    leaser:$("#leaser2").val(),
+
                 }
             },
             columns:[
@@ -81,7 +93,8 @@
         alert(""+price)
     }
     function downqw(id){
-        location.href="/downProductlById?id="+id;
+        alert(id)
+        location.href="http://192.168.1.151:8080/downProductlById?id="+9;
     }
     function openEmp(id){
         bootbox.dialog({

@@ -1,11 +1,9 @@
 package com.jk.service;
 
 import com.jk.model.ContractBean;
+import com.jk.model.FyBean;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +22,11 @@ public interface HetongService {
     String delCommodity(Integer id);
 
     @RequestMapping ("downProductlById")
-    List<ContractBean> downProductlById(Integer id);
-    @RequestMapping ("queyrContract")
+    List<ContractBean> downProductlById(String id);
+    @PostMapping("queyrContract")
     HashMap<String, Object> queyrContract(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows,@RequestBody ContractBean contractBean);
     @RequestMapping ("delContract")
     void delContract(@RequestBody Integer id);
+    @RequestMapping ("queryHousingInformation")
+    List<FyBean> queryHousingInformation();
 }

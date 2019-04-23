@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.model.ContractBean;
+import com.jk.model.FyBean;
 import com.jk.service.HetongService;
 import com.jk.util.ExportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,6 @@ public class HetongController {
     @RequestMapping("queyrContract")
     @ResponseBody
     public HashMap<String,Object> queyrContract(Integer page,Integer rows,ContractBean contractBean){
-        System.out.println("page"+page+"rows"+rows);
         return hetongService.queyrContract(page,rows,contractBean);
     }
     @RequestMapping("toqueryll")
@@ -60,9 +60,10 @@ public class HetongController {
     public String dk(){
         return "dk";
     }
+    @RequestMapping("downProductlById")
     @ResponseBody
-    @RequestMapping("downProductlById")//serialId是前台传来信息的id,filename是文件存放地址,这个会让选择的
-    public String downProductlById(Integer id, HttpServletResponse response, String filename) throws IOException {
+    //serialId是前台传来信息的id,filename是文件存放地址,这个会让选择的
+    public String downProductlById(String id, HttpServletResponse response, String filename) throws IOException {
         System.out.println("id"+id+"文件名"+filename);
         //名字
         String sheetName="合同表";
@@ -84,7 +85,12 @@ public class HetongController {
     @RequestMapping("delContract")
     @ResponseBody
     public void delContract(Integer id){
-        System.out.println("删除的id为"+id);
         hetongService.delContract(id);
+    }
+    @RequestMapping("queryHousingInformation")
+    @ResponseBody
+    public List<FyBean> queryHousingInformation(){
+
+        return hetongService.queryHousingInformation();
     }
 }

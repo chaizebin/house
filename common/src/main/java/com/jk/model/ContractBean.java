@@ -1,7 +1,7 @@
 package com.jk.model;
 
 public class ContractBean {
-    private Integer id;
+    private String id;
     private String leaser;
     private String tenant;
     private String idnumber;
@@ -14,11 +14,11 @@ public class ContractBean {
     private String housebelocated;
     private String price;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -113,7 +113,7 @@ public class ContractBean {
     @Override
     public String toString() {
         return "ContractBean{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", leaser='" + leaser + '\'' +
                 ", tenant='" + tenant + '\'' +
                 ", idnumber='" + idnumber + '\'' +

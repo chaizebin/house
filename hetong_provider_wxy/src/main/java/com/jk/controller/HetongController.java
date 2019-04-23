@@ -7,10 +7,7 @@ import com.jk.service.HetongServiceImpl;
 import com.jk.util.ExportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-
 public class HetongController {
     @Autowired
     private HetongService hetongService;
@@ -29,10 +25,10 @@ public class HetongController {
     public String test() {
         return "s";
     }
-    @RequestMapping("queyrContract")
+    @PostMapping("queyrContract")
     @ResponseBody
-        public HashMap<String,Object> queyrContract(Integer page,Integer rows,ContractBean contractBean){
-
+        public HashMap<String,Object> queyrContract( @RequestParam("page") Integer page, @RequestParam("rows") Integer rows, @RequestBody  ContractBean contractBean){
+        System.out.println(page+"---"+rows+"-------"+contractBean);
         return hetongService.queyrContract(page,rows,contractBean);
     }
     @RequestMapping("savecontract")
@@ -45,11 +41,11 @@ public class HetongController {
     }
     @ResponseBody
     @RequestMapping("downProductlById")//serialId是前台传来信息的id,filename是文件存放地址,这个会让选择的
-    public String downProductlById(@RequestBody Integer id, HttpServletResponse response, String filename) throws IOException {
+    public String downProductlById( String id, HttpServletResponse response, String filename) throws IOException {
         //名字
-        String sheetName="中标产品表";
+        String sheetName="合同表";
         //标题
-        String titleName="中标产品表名单";
+        String titleName="合同表名单";
         //字段,这个得在这写好
         String[] headers = {"编号", "名称","规格","生产企业"};
         //根据传来的id查询出来的list集合
@@ -82,4 +78,5 @@ public class HetongController {
 
        return hetongService.queryHousingInformation();
     }
+
 }
