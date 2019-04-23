@@ -21,4 +21,16 @@ public interface UserService {
 
     @PostMapping("addimg")
     void addimg(@RequestBody ImgBean imgBean);
+
+    @GetMapping("queryUserList")
+    List<UserBean> queryUserList();
+
+    @PostMapping("insUserList")
+    void insUserList(UserBean userBean);
+
+    @DeleteMapping("deleteUser/{userid}")
+    void deleteUser(@PathVariable("userid") Integer userid);
+
+    @GetMapping("queryUserById/{userid}")
+    UserBean queryUserById(@PathVariable("userid")Integer userid);
 }
