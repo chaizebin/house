@@ -20,6 +20,8 @@
         <module>hetong_provider_wxy</module>
         <module>fangyuan-feign-rhj</module>
         <module>fangyuan-provider-rhj</module>
+        <module>spring-feign-ljw</module>
+        <module>spring-provider-ljw</module>
        </modules>
 
    </project>
