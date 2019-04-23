@@ -171,8 +171,8 @@
             <a href="https://www.danke.com/room/bj" data-subject="找房">找房</a>
             <a href="https://www.danke.com/recommend-list/bj?rent_type=joint_rent" data-subject="合租">合租</a>
             <a href="https://www.danke.com/recommend-list/bj?rent_type=entire_rent" data-subject="整租">整租</a>
-            <a href="https://www.danke.com/rent-cycle-recommend/bj?rent_cycle=1" data-subject="月租" class="nav-owner">
-                月租2
+            <a href="javascript:yuezu();" data-subject="月租" class="nav-owner">
+                月租
                 <img src="../gerenzhongxinjs/public-20181026-Fk40x9Wf9fpcZcvRlpfytkExj3k9" alt="月租图标" class="owner-gray-icon">
             </a>
             <a href="https://www.danke.com/about/yezhu.html" data-subject="业主">业主</a>
@@ -197,6 +197,11 @@
         </div>
     </div>
 </div>
+<script>
+    function yuezu() {
+        window.location.href="/page/toyuezufangzi";
+    }
+</script>
 <div class="right-fixed" style="opacity: 0;">
     <div class="fixed-wrapper">
         <div class="scroll-to-top">
@@ -288,7 +293,7 @@
 				<a href="javascript:; ">  个人中心</a>
 			</li>
 								<li class="menu-list ">
-				<a href="https://www.danke.com/user-center/collect.html">我的收藏</a>
+				<a href="javascript:wode();">我的收藏</a>
 			</li>
 								<li class="menu-list ">
 
@@ -306,6 +311,10 @@
 			</li>
 			</ul>
 <script>
+function wode() {
+    window.location.href="/page/towodeshouchang";
+}
+    
 	//清空修改手机号页面sessionStorage缓存;
 	if(document.URL.indexOf("telphone") == "-1"){
 		sessionStorage.clear();
@@ -585,7 +594,7 @@
     //初始化用户名称展示
     initusername();
     function initusername(){
-        alert("进来了")
+
         $.ajax({
             url:'/user/inituserphone',
             type:'post',

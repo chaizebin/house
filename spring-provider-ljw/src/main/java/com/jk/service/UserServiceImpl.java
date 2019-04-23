@@ -27,7 +27,8 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public List<RoommatesBean> queryHouseyuezu() {
-        return userMapper.queryHouseyuezu();    }
+        return userMapper.queryHouseyuezu();
+    }
 
     @Override
     public void addimg(ImgBean imgBean) {
@@ -57,5 +58,10 @@ public class UserServiceImpl implements  UserService{
     @Override
     public UserBean queryUserById(Integer userid) {
         return userMapper.queryUserById(userid);
+    }
+
+    @Override
+    public List<RoommatesBean> queryHouseyuezu2() {
+        return userMapper.queryHouseyuezu2();
     }
 }

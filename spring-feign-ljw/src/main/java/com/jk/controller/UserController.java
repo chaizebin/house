@@ -108,6 +108,13 @@ public class UserController {
         List<RoommatesBean> list = userservice.queryHouseyuezu();
         return list;
     }
+    //房屋展示
+    @GetMapping("queryHouseyuezu2")
+    @ResponseBody
+    public List<RoommatesBean> queryHouseyuezu2(){
+        List<RoommatesBean> list = userservice.queryHouseyuezu2();
+        return list;
+    }
 
 
     @PostMapping("addimg")

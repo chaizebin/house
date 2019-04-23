@@ -43,11 +43,19 @@ public class PageController {
         return "userPage";
     }
 
+    @RequestMapping("towodeshouchang")
+    public String towodeshouchang(){
+        return "wodeshoucang";
+    }
 
 
     @RequestMapping("AddUser")
     public String toAddUser(){
         return "addUser";
+    }
+    @RequestMapping("toxiangxi")
+    public String toxiangxi(){
+        return "xiangxi";
     }
 
 }

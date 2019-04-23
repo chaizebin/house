@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/house.iml" filepath="$PROJECT_DIR$/.idea/house.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-feign-ljw/spring-feign-ljw.iml" filepath="$PROJECT_DIR$/spring-feign-ljw/spring-feign-ljw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-provider-ljw/spring-provider-ljw.iml" filepath="$PROJECT_DIR$/spring-provider-ljw/spring-provider-ljw.iml" />
+    </modules>
+  </component>
+</project>

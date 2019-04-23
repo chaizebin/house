@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common" />
+        <module name="eureka" />
+        <module name="spring-feign-ljw" />
+        <module name="spring-provider-ljw" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.7" />
+      <module name="eureka" target="1.8" />
+      <module name="house" target="1.5" />
+      <module name="spring-feign-ljw" target="1.8" />
+      <module name="spring-provider-ljw" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka" options="-parameters" />
+      <module name="spring-feign-ljw" options="-parameters" />
+      <module name="spring-provider-ljw" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -24,4 +24,6 @@ public interface UserService {
     void deleteGood(Integer userid);
 
     UserBean queryUserById(Integer userid);
+
+    List<RoommatesBean> queryHouseyuezu2();
 }

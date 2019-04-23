@@ -33,4 +33,7 @@ public interface UserService {
 
     @GetMapping("queryUserById/{userid}")
     UserBean queryUserById(@PathVariable("userid")Integer userid);
+
+    @GetMapping("queryHouseyuezu2")
+    List<RoommatesBean> queryHouseyuezu2();
 }

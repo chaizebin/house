@@ -7,6 +7,15 @@ public class RoommatesBean {
     private String type; //房间类型
     private String price; //房间价格
     private String distance; //房间距离地铁站距离
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;

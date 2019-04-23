@@ -16,7 +16,7 @@ public interface UserMapper {
     UserBean phoneVerification(String userphone);
 
 
-    @Select(" SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId")
+    @Select(" SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId where state =2 ")
     List<RoommatesBean> queryHouseyuezu();
 
     @Insert("insert into house_img(url,imgName) values(#{url},#{imgName})")
@@ -37,4 +37,6 @@ public interface UserMapper {
     @Update("update house_user set username=#{username},userphone=#{userphone},userpassword=#{userpassword},userstate=#{userstate} where userid=#{userid}")
     void updateUserList(UserBean userBean);
 
+    @Select(" SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId  ")
+    List<RoommatesBean> queryHouseyuezu2();
 }
