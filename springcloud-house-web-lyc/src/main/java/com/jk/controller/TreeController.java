@@ -1,6 +1,8 @@
 package com.jk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.jk.model.CheckTheDetails;
+import com.jk.model.RoommatesBean;
 import com.jk.model.TreeBean;
 import com.jk.service.TreeService;
 import org.apache.commons.lang.StringUtils;
@@ -46,4 +48,18 @@ public class TreeController {
          }
          return list;
      }
+     //合租
+    @GetMapping("queryHousingInformation")
+    @ResponseBody
+    public List<RoommatesBean> queryHousingInformation(){
+        System.out.println("11111111111111111111");
+        return treeService.queryHousingInformation();
+    }
+    //查看详情
+    @GetMapping("CheckTheDetails")
+    @ResponseBody
+    public List<CheckTheDetails> CheckTheDetails(){
+        System.out.println("-------------------------------");
+        return treeService.CheckTheDetails();
+    }
 }

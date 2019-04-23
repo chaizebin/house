@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.mapper.TreeMapper">
+<mapper namespace="com.jk.mapper.RoommatesMapper">
 
-    <select id="findTreeByPid" resultType="com.jk.model.TreeBean" parameterType="int">
-       select * from house_tree where pid=#{pid}
+    <select id="queryHousingInformation" resultType="com.jk.model.RoommatesBean">
+       SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId
+    </select>
+    <select id="CheckTheDetails" resultType="com.jk.model.CheckTheDetails">
+       select a.id,a.type,
+       a.theSubway,
+       b.name,
+       a.price,
+       a.coveredArea,
+       a.houseNumber,
+       a.houseType,
+       a.floor,
+       a.distance
+        from house_house a left join house_label b on a.houseId=b.houseId left join house_orientation c on a.houseId=c.houseId
     </select>
     <!--<select id="findShoppingCount" resultType="int">
-        SELECT count(1) from news_comments where 1=1
+        SELECT count(1) from news_comments
     </select>
 
     <select id="findShoppingPage" resultType="com.jk.model.Comments">
