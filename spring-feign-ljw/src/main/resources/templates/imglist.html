@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="/js3/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap3/css/bootstrap.css">
+    <script type="text/javascript" src="/js3/bootstrap3/js/bootstrap.js"></script>
+    <!-- 引入tree的js、css -->
+    <link rel="stylesheet" href="/js3/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script type="text/javascript" src="/js3/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入选项卡的js、css -->
+    <link rel="stylesheet" href="/js3/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="/js3/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <!-- 引入table的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="/js3/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/js3/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!-- 引入删除提示框 -->
+    <script type="text/javascript" src="/js3/bootbox/bootbox.min.js"></script>
+    <!-- 引入时间的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script  src="/js3/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script  src="/js3/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 引入文件上传的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="/js3/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="/js3/bootstrap-fileinput/js/locales/zh.js"></script>
+</head>
+<body>
+<div id="toolbar">
+    <button type="button" class="btn btn-primary" onclick="openAdd()">新增</button>
+</div>
+
+
+</body>
+<script type="text/javascript" th:inline="none">
+
+
+
+
+
+
+
+
+    var res;
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    //打开新增弹框
+    function openAdd(){
+        alert("进来了")
+        bootbox.dialog({
+            title:'添加用户',
+            message: createAddContent("/page/addimgyemian"),
+            closeButton: true,//是否显示关闭按钮
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        $.ajax({
+                            url:'/user/addimg',
+                            type:'post',
+                            data:$("#Froms").serialize(),
+                            success:function(){
+                              //  $('#myTable').bootstrapTable('refresh');
+                                searchBtn();
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+
+        });
+    }
+
+
+</script>
+</html>
