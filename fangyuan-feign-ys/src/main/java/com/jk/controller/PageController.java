@@ -18,5 +18,10 @@ public class PageController {
         return "list";
     }
 
+    @RequestMapping("toshouye")
+    public String toshouye(){
+        return "shouye";
+    }
+
 
 }

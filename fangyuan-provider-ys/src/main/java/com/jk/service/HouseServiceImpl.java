@@ -22,12 +22,13 @@ public class HouseServiceImpl implements HouseService {
     private HouseMapper houseMapper;
 
     @Override
-    public Map<String, Object> selectHousePage(Integer page, Integer rows) {
-        Map<String, Object> hashMap = new HashMap<String, Object>();
+    public Map<String, Object> selectHousePage(Integer page, Integer rows,HouseBean houseBean) {
+
+        Map<String, Object> hashMap = new HashMap<>();
         //查询总条数
-        long total = houseMapper.queryHouseTotal();
+        long total = houseMapper.queryHouseTotal(houseBean);
         int  start=(page-1)*rows;
-        List<HouseBean> list=houseMapper.selectHouseList(start,rows);
+        List<HouseBean> list=houseMapper.selectHouseList(start,rows,houseBean);
         hashMap.put("total",total);
         hashMap.put("rows",list);
         return hashMap;
@@ -54,8 +55,8 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public List<HouseBean> selectHouse() {
-        return houseMapper.selectHouse();
+    public List<HouseBean> selectHouse(HouseBean houseBean) {
+        return houseMapper.selectHouse(houseBean);
     }
 
 }

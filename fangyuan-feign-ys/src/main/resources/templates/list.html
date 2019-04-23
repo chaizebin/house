@@ -23,6 +23,42 @@
 </head>
 <body>
 <div  id="toolbar">
+
+    <!--<div class="container-fluid">
+        <form class="form-inline">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+						 <span class="input-group-addon">
+							<i class="glyphicon glyphicon-yen"></i>
+						 </span>
+                            <input type="text" class="form-control" id="price" >
+                            <span class="input-group-addon">
+						 </span>
+                        </div>
+                        <button type="button" onclick="sousuo()"   class="btn btn-warning"  style="background-color: transparent; border-color: blue;color:gray;">查询</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+    <form class="form-inline" >
+        <div class="form-group">
+            <label for="price">价格</label>
+            <input type="text" class="form-control" id="price" placeholder="请输入价格">
+        </div>
+        <!--<div class="form-group">
+            <label for="price">区域</label>
+            <input type="text" class="form-control" id="cityName" placeholder="请输入区域,地铁,小区名">
+        </div>-->
+        <button type="button" class="btn btn-primary glyphicon glyphicon-search" onclick="searchUser()">搜索</button></br>
+
+    </form>
+
+
+
+
         <button onclick="addDialog()" type="button" class="btn btn-primary glyphicon glyphicon-plus">新增</button>
     <button onclick="delAllHouse()" type="button" class="btn btn-warning glyphicon glyphicon-remove">删除</button>
 </div>
@@ -32,6 +68,16 @@
 </body>
 
 <script type="text/javascript"  th:inline="none">
+
+    /*function sousuo() {
+
+        $('#myTable').bootstrapTable('refresh');
+    }*/
+
+    function searchUser() {
+        $('#myTable').bootstrapTable("refresh");
+    }
+
     //初始化方法
     $(function(){
         search();
@@ -47,10 +93,12 @@
             pageSize:3,//默认每页条数
             sidePagination:"server",
             queryParams:function(){
+
                 return{
                         page: this.pageNumber,
-                        rows: this.pageSize
-                }
+                        rows: this.pageSize,
+                    price:$("#price").val()
+                };
             },
             columns:[
                 {field:"全选",checkbox:true},

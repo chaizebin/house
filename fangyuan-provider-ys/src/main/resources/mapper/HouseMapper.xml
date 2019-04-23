@@ -30,6 +30,7 @@
               left join house_area ta3 on t.bigCity=ta3.id
               left join house_orientation ho on t.orientation=ho.id
               left join house_label lb on t.lable=lb.id
+
     </select>
 
 
@@ -62,12 +63,14 @@
               left join house_area ta2 on t.city=ta2.id
               left join house_area ta3 on t.bigCity=ta3.id
               left join house_orientation ho on t.orientation=ho.id
-              left join house_label lb on t.lable=lb.id
+              left join house_label lb on t.lable=lb.id where 1=1
+       <include refid="houseWhere"></include>
        limit  #{start},#{rows}
    </select>
 
    <select id="queryHouseTotal"  resultType="long">
-       select count(*) from house_house
+       select count(*) from house_house t where 1=1
+       <include refid="houseWhere"></include>
    </select>
 
     <delete id="deleteHouseById" >
@@ -87,7 +90,12 @@
 
 
 
+<sql id="houseWhere">
+        <if test="houseBean.price!=null and houseBean.price!=''">
+           and t.price >= #{houseBean.price,jdbcType=NUMERIC}
+        </if>
 
+</sql>
 
 
 

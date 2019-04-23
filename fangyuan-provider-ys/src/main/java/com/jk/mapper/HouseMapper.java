@@ -12,9 +12,9 @@ import java.util.List;
  * @Description:
  */
 public interface HouseMapper {
-    long queryHouseTotal();
+    long queryHouseTotal(@Param("houseBean") HouseBean houseBean);
 
-    List<HouseBean> selectHouseList(@Param("start") Integer page, @Param("rows") Integer rows);
+    List<HouseBean> selectHouseList(@Param("start") Integer page, @Param("rows") Integer rows,@Param("houseBean") HouseBean houseBean);
 
     void deleteHouseById(@Param("id") Integer id);
 
@@ -22,5 +22,5 @@ public interface HouseMapper {
 
     HouseBean selectHouseById(@Param("id") Integer id);
 
-    List<HouseBean> selectHouse();
+    List<HouseBean> selectHouse(HouseBean houseBean);
 }

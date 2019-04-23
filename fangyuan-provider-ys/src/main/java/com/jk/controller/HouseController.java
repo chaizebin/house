@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,18 +28,19 @@ public class HouseController {
      */
     @GetMapping("selectHouse")
     @ResponseBody
-    public List<HouseBean> selectHouse(){
-        return houseService.selectHouse();
+    public List<HouseBean> selectHouse(HouseBean houseBean){
+
+        return houseService.selectHouse(houseBean);
     }
 
     /*
     查询分页
      */
-    @GetMapping("selectHousePage")
+    @PostMapping("selectHousePage")
     @ResponseBody
-    public Map<String,Object> selectHousePage(Integer page , Integer rows){
-        System.out.println(page+"--"+rows);
-        return houseService.selectHousePage(page,rows);
+    public Map<String,Object> selectHousePage(@RequestParam("page") Integer page ,@RequestParam("rows") Integer rows,@RequestBody HouseBean houseBean){
+        System.out.println(page+"--"+rows+houseBean);
+        return houseService.selectHousePage(page,rows,houseBean);
     }
 
 

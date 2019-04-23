@@ -28,17 +28,17 @@ public class HouseController {
      */
     @GetMapping("selectHouse")
     @ResponseBody
-    public List<HouseBean> selectHouse(){
+    public List<HouseBean> selectHouse(HouseBean houseBean){
         System.out.println("1");
-        return houseServiceFeign.selectHouse();
+        return houseServiceFeign.selectHouse(houseBean);
 
     }
 
-    @GetMapping("selectHousePage")
+    @RequestMapping ("selectHousePage")
     @ResponseBody
-    public Map<String,Object> selectHousePage(Integer page , Integer rows){
-        System.out.println(page+"--"+rows);
-        return houseServiceFeign.selectHousePage(page,rows);
+    public Map<String,Object> selectHousePage(Integer page , Integer rows,HouseBean houseBean){
+        System.out.println(page+"--"+rows+houseBean);
+        return houseServiceFeign.selectHousePage(page,rows,houseBean);
     }
 
     @DeleteMapping("deleteHouseById")

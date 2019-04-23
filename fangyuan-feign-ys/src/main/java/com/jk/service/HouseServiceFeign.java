@@ -2,10 +2,7 @@ package com.jk.service;
 
 import com.jk.model.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -19,8 +16,8 @@ import java.util.Map;
 @FeignClient("house-provider")
 public interface HouseServiceFeign {
 
-    @GetMapping("selectHousePage")
-    Map<String, Object> selectHousePage(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows);
+    @PostMapping("selectHousePage")
+        Map<String, Object> selectHousePage(@RequestParam("page") Integer page,  @RequestParam("rows") Integer rows,@RequestBody HouseBean houseBean);
 
     @DeleteMapping("deleteHouseById")
     void deleteHouseById(@RequestParam("id") Integer id);
@@ -35,5 +32,5 @@ public interface HouseServiceFeign {
     void updateHouse(HouseBean houseBean);
 
     @GetMapping("selectHouse")
-    List<HouseBean> selectHouse();
+    List<HouseBean> selectHouse(HouseBean houseBean);
 }

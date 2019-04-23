@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface HouseService {
 
-    Map<String, Object> selectHousePage(Integer page, Integer rows);
+    Map<String, Object> selectHousePage(Integer page, Integer rows,HouseBean houseBean);
 
     void deleteHouseById(Integer id);
 
@@ -21,5 +21,5 @@ public interface HouseService {
 
     HouseBean selectHouseById(Integer id);
 
-    List<HouseBean> selectHouse();
+    List<HouseBean> selectHouse(HouseBean houseBean);
 }
