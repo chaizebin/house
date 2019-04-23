@@ -8,7 +8,8 @@
     <artifactId>house</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
+
+      <modules>
         <module>common</module>
         <module>eureka</module>
         <module>springcloud-house-provider-lyc</module>
@@ -17,7 +18,8 @@
         <module>fangyuan-provider-ys</module>
         <module>hetong_feign_wxy</module>
         <module>hetong_provider_wxy</module>
-    </modules>
+        <module>fangyuan-feign-rhj</module>
+        <module>fangyuan-provider-rhj</module>
+       </modules>
 
-
-</project>
+   </project>
