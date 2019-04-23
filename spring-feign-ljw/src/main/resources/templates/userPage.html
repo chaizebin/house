@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<!-- 引入juquery -->
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<!-- 引入bootstrap的css、js -->
+	<link rel="stylesheet" href="/bootstrap3/css/bootstrap.css">
+	<script type="text/javascript" src="/bootstrap3/js/bootstrap.js"></script>
+	<!-- 引入table的css、js -->
+	<script src="/js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+	<link rel="stylesheet" href="/js/bootstrap-table/bootstrap-table.css">
+	<script type="text/javascript" src="/js/bootstrap-table/bootstrap-table.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<!-- 引入bootbox的js -->
+	<script type="text/javascript" src="/js/bootstrap-bootbox/bootbox.js"></script>
+</head>
+<body>
+<div id="toolbar">
+	<button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="openEmp()">新增</button>
+</div>
+
+<table class="table" id="myTable"></table>
+<iframe  width='1500px' height='800px' frameBorder='0' src='https://www.dituwuyou.com/map/nbyC2JVFs8LwroyxKwjhoA/embed?base_map=normal&center=116.350912%2C40.059248&level=17'> </iframe>
+</body>
+<script>
+	$(function(){
+		initUserTable();//初始化用户表格数据
+	})
+	function initUserTable(){
+		$('#myTable').bootstrapTable({
+
+			toolbar:'#toolbar',
+			url:"/user/queryUserList",
+			queryParams:function(){
+				return {
+				};
+			},
+			columns:[
+				{field:"check",checkbox:true},
+				{field:"userid",title:"id"},
+				{field:"username",title:"用户名称"},
+				{field:"userphone",title:"用户手机号"},
+				{field:"userpassword",title:"用户密码"},
+				{field:"userstate",title:"用户状态"},
+				{field:"adsc",title:"操作",formatter:function(value,row,index) {
+						return "<button type='button' class='btn btn btn-danger glyphicon glyphicon-pencil' " +
+								"onclick='openEmp("+row.userid+")'>修改</button> <button type='button' class='btn btn btn-danger glyphicon glyphicon-trash' onclick='deleteEmp("+row.userid+")'>删除</button>";
+					}}
+			]
+		});
+	}
+
+	var res;
+	function createAddContent(url){
+		$.ajax({
+			url:url,
+			async:false,
+			success:function(data){
+				res = data;
+			}
+		});
+		return res;
+	}
+	function openEmp(userid) {
+		bootbox.dialog({
+			title: '用户',
+			message: createAddContent("/page/AddUser"),
+			closeButton: true,//显示关闭按钮
+			buttons: {
+				"success": {
+					"label": "<i class='icon-ok'></i> 保存",
+					"className": "btn-sm btn-success",
+					"callback": function () {
+						$.ajax({
+							url: '/user/insUserList',
+							type: 'post',
+							data: $("#myForm").serialize(),
+							success: function () {
+
+								$('#myTable').bootstrapTable('refresh');
+							}
+						});
+					}
+				},
+				"cancel": {
+					"label": "<i class='icon-info'></i> 取消",
+					"className": "btn-sm btn-danger",
+					"callback": function () {
+
+					}
+				}
+			}
+
+		})
+		$.ajax({
+			url:"/user/queryUserById",
+			data:{userid:userid},
+			success:function(data){
+				$("#userid").val(data.userid),
+						$("#username").val(data.username),
+						$("#userphone").val(data.userphone),
+						$("#userpassword").val(data.userpassword),
+						$("#userstate").val(data.userstate)
+
+			}
+		})
+	}
+	//删除用户数据
+	function deleteEmp(userid){
+		$.ajax({
+			url:"/user/deleteUser",
+			type:"delete",
+			data:{userid:userid},
+			success:function(){
+				if(confirm("是否确认删除这条数据?")){
+					$('#myTable').bootstrapTable('refresh');
+				}
+
+			}
+		})
+	}
+</script>
+</html>

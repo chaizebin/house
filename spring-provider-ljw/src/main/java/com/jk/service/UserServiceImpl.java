@@ -33,4 +33,29 @@ public class UserServiceImpl implements  UserService{
     public void addimg(ImgBean imgBean) {
         userMapper.addimg(imgBean);
     }
+
+    @Override
+    public List<UserBean> queryUserList() {
+        return userMapper.queryUserList();
+    }
+
+    @Override
+    public void insUserList(UserBean userBean) {
+        if(userBean.getUserid() == null){
+            userMapper.insUserList(userBean);
+        }else{
+            userMapper.updateUserList(userBean);
+        }
+
+    }
+
+    @Override
+    public void deleteGood(Integer userid) {
+        userMapper.deleteGood(userid);
+    }
+
+    @Override
+    public UserBean queryUserById(Integer userid) {
+        return userMapper.queryUserById(userid);
+    }
 }

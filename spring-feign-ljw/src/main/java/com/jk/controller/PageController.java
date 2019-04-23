@@ -38,4 +38,16 @@ public class PageController {
         return "imglist";
     }
 
+    @RequestMapping("touserPage")
+    public String togoodPage(){
+        return "userPage";
+    }
+
+
+
+    @RequestMapping("AddUser")
+    public String toAddUser(){
+        return "addUser";
+    }
+
 }

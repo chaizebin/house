@@ -68,5 +68,33 @@ public class UserController {
         userservice.addimg(imgBean);
     }
 
+    //查询
+    @GetMapping("queryUserList")
+    @ResponseBody
+    public List<UserBean> queryGoodsList(){
+        List<UserBean> user = userservice.queryUserList();
+        return user;
+    }
+    //新增用户
+    @PostMapping("insUserList")
+    @ResponseBody
+    public void insUserList(@RequestBody UserBean userBean){
+        userservice.insUserList(userBean);
+    }
+
+    ///删除
+    @DeleteMapping("deleteUser/{userid}")
+    @ResponseBody
+    public void deleteGood(@PathVariable("userid") Integer userid){
+        userservice.deleteGood(userid);
+    }
+
+    //回显
+    @GetMapping("queryUserById/{userid}")
+    @ResponseBody
+    public UserBean queryGoodById(@PathVariable("userid")Integer userid){
+        return userservice.queryUserById(userid);
+    }
+
 
 }
