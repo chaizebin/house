@@ -21,4 +21,17 @@ public class PageController {
     public String toZhiFuBao(){
         return "zhifubao";
     }
+    @RequestMapping("map")
+    public String map(){
+        return "map";
+    }
+    @RequestMapping("roommates")
+    public String roommates(){
+        return "roommates";
+    }
+
+    @RequestMapping("CheckTheDetails")
+    public String CheckTheDetails(){
+        return "checkTheDetails";
+    }
 }

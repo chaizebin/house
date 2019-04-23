@@ -7,7 +7,7 @@
        select * from house_tree where pid=#{pid}
     </select>
     <!--<select id="findShoppingCount" resultType="int">
-        SELECT count(1) from news_comments
+        SELECT count(1) from news_comments where 1=1
     </select>
 
     <select id="findShoppingPage" resultType="com.jk.model.Comments">
