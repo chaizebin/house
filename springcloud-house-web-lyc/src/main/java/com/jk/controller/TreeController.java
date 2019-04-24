@@ -2,14 +2,17 @@ package com.jk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.jk.model.CheckTheDetails;
+import com.jk.model.LookingRoom;
 import com.jk.model.RoommatesBean;
 import com.jk.model.TreeBean;
 import com.jk.service.TreeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,6 +29,9 @@ public class TreeController {
 
      @Resource
      private RedisTemplate<String,Object> redisTemplate;
+
+     @Resource
+     private MongoTemplate mongoTemplate;
 
      @GetMapping("findTree")
      @ResponseBody
@@ -61,5 +67,19 @@ public class TreeController {
     public List<CheckTheDetails> CheckTheDetails(){
         System.out.println("-------------------------------");
         return treeService.CheckTheDetails();
+    }
+
+    //收藏
+    @PostMapping("Collection")
+    @ResponseBody
+    public void Collection(CheckTheDetails checkTheDetails){
+        mongoTemplate.save(checkTheDetails,"checkTheDetails");
+    }
+    //找房
+    @GetMapping("LookingRoom")
+    @ResponseBody
+    public List<LookingRoom> LookingRoom(){
+        System.out.println("++++++++++++++++++++++++++");
+        return treeService.LookingRoom();
     }
 }

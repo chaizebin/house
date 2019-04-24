@@ -34,4 +34,8 @@ public class PageController {
     public String CheckTheDetails(){
         return "checkTheDetails";
     }
+    @RequestMapping("LookingRoom")
+    public String LookingRoom(){
+        return "LookingRoom";
+    }
 }
