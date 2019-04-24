@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c95507b-cf8e-4fc6-9ab3-ee2d663ee73d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/controller/RoommatesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/controller/RoommatesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/mapper/RoommatesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/mapper/RoommatesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/service/RoommatesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/service/RoommatesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/service/RoommatesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/java/com/jk/service/RoommatesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/resources/mapper/RoommatesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-provider-lyc/src/main/resources/mapper/RoommatesMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-web-lyc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-web-lyc/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/controller/PageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/controller/PageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/controller/TreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/controller/TreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/service/TreeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/java/com/jk/service/TreeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/resources/templates/checkTheDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/springcloud-house-web-lyc/src/main/resources/templates/checkTheDetails.html" afterDir="false" />
-    </list>
+    <list default="true" id="1c95507b-cf8e-4fc6-9ab3-ee2d663ee73d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/eureka/target/" />
@@ -30,7 +18,7 @@
     <session id="1018755345">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.31" value="1" />
@@ -123,8 +111,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/springcloud-house-web-lyc/src/main/resources/templates/LookingRoom.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="7996" column="48" lean-forward="true" selection-start-line="7996" selection-start-column="48" selection-end-line="7996" selection-end-column="48" />
+            <state relative-caret-position="48">
+              <caret line="7995" column="56" selection-start-line="7995" selection-start-column="56" selection-end-line="7995" selection-end-column="56" />
               <folding>
                 <element signature="e#39#45#0" expanded="true" />
                 <element signature="e#45#51#0" expanded="true" />
@@ -422,7 +410,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556032645033" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556033033594" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -504,18 +492,17 @@
       <workItem from="1555892854724" duration="18502000" />
       <workItem from="1555979353536" duration="18208000" />
       <workItem from="1556005107865" duration="870000" />
-      <workItem from="1556006105611" duration="11159000" />
+      <workItem from="1556006105611" duration="11415000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81306000" />
+    <option name="totallyTimeSpent" value="81562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28150135" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28150135" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -526,12 +513,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32956153" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.10623229" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" weight="0.6062323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.062322944" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.6274788" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.1898017" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3286119" />
@@ -929,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/springcloud-house-web-lyc/src/main/resources/templates/LookingRoom.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="7996" column="48" lean-forward="true" selection-start-line="7996" selection-start-column="48" selection-end-line="7996" selection-end-column="48" />
+        <state relative-caret-position="48">
+          <caret line="7995" column="56" selection-start-line="7995" selection-start-column="56" selection-end-line="7995" selection-end-column="56" />
           <folding>
             <element signature="e#39#45#0" expanded="true" />
             <element signature="e#45#51#0" expanded="true" />
