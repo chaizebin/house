@@ -24,30 +24,33 @@ import java.util.Map;
 
 /**
  * @program: house
- * @Date: 2019/4/23 23:20
+ * @Date: 2019/4/24 21:40
  * @Author: Mr.Chai
  * @Description:
  */
 @Controller
-public class esController {
-@Autowired
+public class EsController {
+    @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
     @GetMapping("queryHouse")
     @ResponseBody
-    public List<HouseBean> queryAllOrder(@RequestParam("search") String search){
-        System.out.println(search);
+    public List<HouseBean> queryAllOrder(@RequestParam("canshu") String canshu){
+        System.out.println(canshu);
         //拿到elastic客户端
         Client client = elasticsearchTemplate.getClient();
         //参数为索引名称
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("houseaaa")
-                .setTypes("elhouse");
-        //设置查询条件 boolQuery() 多条件查询
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("houseiii")
+                .setTypes("iiihouse");
 
-        searchRequestBuilder .setQuery(QueryBuilders.matchQuery("name",search));
-        searchRequestBuilder.setQuery(QueryBuilders.boolQuery());
+
+        searchRequestBuilder .setQuery(QueryBuilders.multiMatchQuery(canshu,"station","cityname","subway"));
+
 
         HighlightBuilder highlightBuilder = new HighlightBuilder();
-        highlightBuilder.field("name");
+        highlightBuilder.field("station");
+        highlightBuilder.field("cityname");
+        highlightBuilder.field("subway");
+
         highlightBuilder.preTags("<font color='red'>");
         highlightBuilder.postTags("</font>");
         //设置高亮查询
@@ -61,24 +64,31 @@ public class esController {
         //hits.getTotalHits();
         //获取到结果集迭代器
         Iterator<SearchHit> iterator = hits.iterator();
-        List<HouseBean> userList = new ArrayList<HouseBean>();
+        List<HouseBean> houseBeanListList = new ArrayList<HouseBean>();
         while (iterator.hasNext()){
             SearchHit next = iterator.next();
             //获取到源码内容 以json字符串的形式获取
             String sourceAsString = next.getSourceAsString();
             //获取高亮字段
             Map<String, HighlightField> highlightFields = next.getHighlightFields();
-            HighlightField HouseName = highlightFields.get("name");
+            HighlightField station = highlightFields.get("station");
+            HighlightField cityname = highlightFields.get("cityname");
+            HighlightField subway = highlightFields.get("subway");
             HouseBean houseBean = JSON.parseObject(sourceAsString, HouseBean.class);
             //JSON.parseObject(sourceAsString, User.class);
             //使用高亮内容 替换非高亮内容
-            houseBean.setCityName(HouseName.fragments()[0].toString());
-            userList.add(houseBean);
+
+
+            //判断是否为高亮字段
+            if(station !=null){
+                houseBean.setStation(station.fragments()[0].toString());
+            }else if(cityname!=null){
+                houseBean.setCityname(cityname.fragments()[0].toString());
+            }else{
+                houseBean.setSubway(subway.fragments()[0].toString());
+            }
+            houseBeanListList.add(houseBean);
         }
-        return userList;
+        return houseBeanListList;
     }
-
-
-
-
 }

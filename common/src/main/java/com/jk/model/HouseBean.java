@@ -12,6 +12,12 @@ public class HouseBean {
     private String housing;//小区
     private Integer meter;//米
     private String url;
+    private String subway; //Es站点
+
+    private String cityname; //es
+    private String houseimg; //图片名
+    private String station; //es
+
 
     private Integer houseType;//户型
     private String typeName;
@@ -19,10 +25,8 @@ public class HouseBean {
     private Integer orientation;//朝向
     private String orientationName;
 
-    private Integer subway;//地铁
     private String subwayName;
 
-    private Integer station;//站点
     private String stationName;
 
     private Integer bigCity;
@@ -145,15 +149,6 @@ public class HouseBean {
     public void setOrientationName(String orientationName) {
         this.orientationName = orientationName;
     }
-
-    public Integer getSubway() {
-        return subway;
-    }
-
-    public void setSubway(Integer subway) {
-        this.subway = subway;
-    }
-
     public String getSubwayName() {
         return subwayName;
     }
@@ -161,15 +156,6 @@ public class HouseBean {
     public void setSubwayName(String subwayName) {
         this.subwayName = subwayName;
     }
-
-    public Integer getStation() {
-        return station;
-    }
-
-    public void setStation(Integer station) {
-        this.station = station;
-    }
-
     public String getStationName() {
         return stationName;
     }
@@ -226,6 +212,38 @@ public class HouseBean {
         this.province = province;
     }
 
+    public String getSubway() {
+        return subway;
+    }
+
+    public void setSubway(String subway) {
+        this.subway = subway;
+    }
+
+    public String getCityname() {
+        return cityname;
+    }
+
+    public void setCityname(String cityname) {
+        this.cityname = cityname;
+    }
+
+    public String getHouseimg() {
+        return houseimg;
+    }
+
+    public void setHouseimg(String houseimg) {
+        this.houseimg = houseimg;
+    }
+
+    public String getStation() {
+        return station;
+    }
+
+    public void setStation(String station) {
+        this.station = station;
+    }
+
     @Override
     public String toString() {
         return "HouseBean{" +
@@ -239,13 +257,15 @@ public class HouseBean {
                 ", housing='" + housing + '\'' +
                 ", meter=" + meter +
                 ", url='" + url + '\'' +
+                ", subway='" + subway + '\'' +
+                ", cityname='" + cityname + '\'' +
+                ", houseimg='" + houseimg + '\'' +
+                ", station='" + station + '\'' +
                 ", houseType=" + houseType +
                 ", typeName='" + typeName + '\'' +
                 ", orientation=" + orientation +
                 ", orientationName='" + orientationName + '\'' +
-                ", subway=" + subway +
                 ", subwayName='" + subwayName + '\'' +
-                ", station=" + station +
                 ", stationName='" + stationName + '\'' +
                 ", bigCity=" + bigCity +
                 ", bigCityName='" + bigCityName + '\'' +
