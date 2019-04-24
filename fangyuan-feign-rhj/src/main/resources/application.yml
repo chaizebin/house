@@ -11,3 +11,9 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: localhost:9300
+      repositories:
+        enabled: true
