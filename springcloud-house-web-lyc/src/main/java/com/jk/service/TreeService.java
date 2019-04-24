@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.model.CheckTheDetails;
+import com.jk.model.LookingRoom;
 import com.jk.model.RoommatesBean;
 import com.jk.model.TreeBean;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,4 +20,7 @@ public interface TreeService {
 
     @GetMapping("CheckTheDetails")
     List<CheckTheDetails> CheckTheDetails();
+
+    @GetMapping("LookingRoom")
+    List<LookingRoom> LookingRoom();
 }

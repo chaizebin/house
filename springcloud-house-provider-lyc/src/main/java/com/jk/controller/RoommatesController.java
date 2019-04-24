@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.model.CheckTheDetails;
+import com.jk.model.LookingRoom;
 import com.jk.model.RoommatesBean;
 import com.jk.service.RoommatesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ public class RoommatesController {
     @ResponseBody
     public List<CheckTheDetails> CheckTheDetails(){
         return roommatesService.CheckTheDetails();
+    }
+    //找房
+    @GetMapping("LookingRoom")
+    @ResponseBody
+    public List<LookingRoom> LookingRoom(){
+        return roommatesService.LookingRoom();
     }
 }
