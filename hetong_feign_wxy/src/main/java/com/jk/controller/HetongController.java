@@ -48,7 +48,6 @@ public class HetongController {
     @RequestMapping("selectcontractId")
     @ResponseBody
     public ContractBean selectcontractId(Integer id){
-        System.out.println("ssdasdas"+id);
         return hetongService.selectcontractId(id);
     }
     @DeleteMapping("delCommodity")
