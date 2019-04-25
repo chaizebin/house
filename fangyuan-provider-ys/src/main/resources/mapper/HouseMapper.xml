@@ -91,10 +91,16 @@
 
 
 <sql id="houseWhere">
-        <if test="houseBean.price!=null and houseBean.price!=''">
-           and t.price >= #{houseBean.price,jdbcType=NUMERIC}
+        <if test="houseBean.startprice!=null and houseBean.startprice!=''">
+           and t.price >= #{houseBean.startprice,jdbcType=NUMERIC}
+        </if>
+        <if test="houseBean.endprice!=null and houseBean.endprice!=''">
+            and t.price &lt;= #{houseBean.endprice,jdbcType=NUMERIC}
         </if>
 
+        <if test="houseBean.houseId!=null and houseBean.houseId!=-1">
+            and t.houseId = #{houseBean.houseId}
+        </if>
 </sql>
 
 

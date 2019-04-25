@@ -16,6 +16,9 @@ public class HouseBean {
     private String distance;//米
     private String housing;//小区
 
+    private Integer startprice;
+    private Integer endprice;
+
     private String url;
 
     private Integer houseType;//户型
@@ -38,6 +41,22 @@ public class HouseBean {
 
     private String provinceName;
     private Integer province;//省
+
+    public Integer getStartprice() {
+        return startprice;
+    }
+
+    public void setStartprice(Integer startprice) {
+        this.startprice = startprice;
+    }
+
+    public Integer getEndprice() {
+        return endprice;
+    }
+
+    public void setEndprice(Integer endprice) {
+        this.endprice = endprice;
+    }
 
     public String getDistance() {
         return distance;
