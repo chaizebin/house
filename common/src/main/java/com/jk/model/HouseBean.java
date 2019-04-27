@@ -13,11 +13,10 @@ public class HouseBean {
     private Integer meter;//米
     private String url;
     private String subway; //Es站点
-
     private String cityname; //es
     private String houseimg; //图片名
     private String station; //es
-
+    private  String type;
 
     private Integer houseType;//户型
     private String typeName;
@@ -37,6 +36,14 @@ public class HouseBean {
 
     private String provinceName;
     private Integer province;//省
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getUrl() {
         return url;
@@ -261,6 +268,7 @@ public class HouseBean {
                 ", cityname='" + cityname + '\'' +
                 ", houseimg='" + houseimg + '\'' +
                 ", station='" + station + '\'' +
+                ", type='" + type + '\'' +
                 ", houseType=" + houseType +
                 ", typeName='" + typeName + '\'' +
                 ", orientation=" + orientation +

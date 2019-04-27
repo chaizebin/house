@@ -38,14 +38,12 @@ public class EsController {
         System.out.println(canshu);
         //拿到elastic客户端
         Client client = elasticsearchTemplate.getClient();
-        //参数为索引名称
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("houseiii")
-                .setTypes("iiihouse");
-
-
-        searchRequestBuilder .setQuery(QueryBuilders.multiMatchQuery(canshu,"station","cityname","subway"));
-
-
+        //指定参数为索引名称和类型
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("elhouse")
+                .setTypes("houseee");
+       //定义query查询
+       searchRequestBuilder .setQuery(QueryBuilders.multiMatchQuery(canshu,"station","cityname","subway"));
+       //获取高亮字段
         HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.field("station");
         highlightBuilder.field("cityname");
@@ -75,11 +73,9 @@ public class EsController {
             HighlightField cityname = highlightFields.get("cityname");
             HighlightField subway = highlightFields.get("subway");
             HouseBean houseBean = JSON.parseObject(sourceAsString, HouseBean.class);
-            //JSON.parseObject(sourceAsString, User.class);
+
             //使用高亮内容 替换非高亮内容
-
-
-            //判断是否为高亮字段
+            //判断高亮字段是否为空
             if(station !=null){
                 houseBean.setStation(station.fragments()[0].toString());
             }else if(cityname!=null){
@@ -88,7 +84,9 @@ public class EsController {
                 houseBean.setSubway(subway.fragments()[0].toString());
             }
             houseBeanListList.add(houseBean);
+            System.out.println(houseBean);
         }
         return houseBeanListList;
+
     }
 }
