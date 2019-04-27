@@ -6,6 +6,7 @@ import com.jk.model.RoommatesBean;
 import com.jk.model.TreeBean;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,8 +20,10 @@ public interface TreeService {
     List<RoommatesBean> queryHousingInformation();
 
     @GetMapping("CheckTheDetails")
-    List<CheckTheDetails> CheckTheDetails();
+    List<CheckTheDetails> CheckTheDetails(@RequestParam(value = "id")int id);
 
     @GetMapping("LookingRoom")
     List<LookingRoom> LookingRoom();
+
+
 }

@@ -1,5 +1,9 @@
 package com.jk.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.lang.annotation.Documented;
+
 public class CheckTheDetails {
     private Integer id;
     private String  type;     //户型信息

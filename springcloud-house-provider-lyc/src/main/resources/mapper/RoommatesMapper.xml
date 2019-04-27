@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.mapper.RoommatesMapper">
-
+    <!--查询合租-->
     <select id="queryHousingInformation" resultType="com.jk.model.RoommatesBean">
        SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId
     </select>
-
+    <!--查看房子详情-->
     <select id="CheckTheDetails" resultType="com.jk.model.CheckTheDetails">
 select a.id,a.type,
        a.theSubway,
@@ -17,8 +17,9 @@ select a.id,a.type,
        a.houseType,
        a.floor,
        a.distance
-        from house_house a left join house_label b on a.houseId=4=b.houseId=4 left join house_orientation c on a.houseId=4=c.houseId=4 where a.houseId=4 and a.id=1
+        from house_house a left join house_label b on a.houseId=b.houseId left join house_orientation c on a.houseId=c.houseId where a.id=#{id}
     </select>
+    <!--找房-->
     <select id="LookingRoom" resultType="com.jk.model.LookingRoom">
        select a.id,b.url,a.type,a.distance,a.coveredArea,a.floor,a.orientation,a.price from house_house a left join house_img b on a.houseId=b.houseId
     </select>
