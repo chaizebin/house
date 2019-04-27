@@ -1,5 +1,9 @@
 package com.jk.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection="1809_house")
 public class RoommatesBean {
 
     private Integer id;

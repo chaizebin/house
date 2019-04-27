@@ -9,14 +9,18 @@ import com.jk.service.TreeService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -64,17 +68,37 @@ public class TreeController {
     //查看详情
     @GetMapping("CheckTheDetails")
     @ResponseBody
-    public List<CheckTheDetails> CheckTheDetails(){
+    public List<CheckTheDetails> CheckTheDetails(HttpSession session){
+     int id=(int)session.getAttribute("id");
         System.out.println("-------------------------------");
-        return treeService.CheckTheDetails();
+        List<CheckTheDetails> checkTheDetails = treeService.CheckTheDetails(id);
+        return checkTheDetails;
     }
 
     //收藏
     @PostMapping("Collection")
     @ResponseBody
-    public void Collection(CheckTheDetails checkTheDetails){
-        mongoTemplate.save(checkTheDetails,"checkTheDetails");
+    public void Collection(RoommatesBean roommatesBean){
+        mongoTemplate.save(roommatesBean,"roommatesBean");
     }
+
+    /*@GetMapping("findMongodb")
+    @ResponseBody
+    public void findMongodb(){
+        List<RoommatesBean> all = mongoTemplate.findAll(RoommatesBean.class);
+        System.out.println("all");
+    }*/
+    @RequestMapping("findOneByMongo")
+    public ModelAndView updateByMongo(Integer id) {
+
+        Query query = new Query();
+        Criteria criteria = Criteria.where("_id").is(id);
+        query.addCriteria(criteria);
+        RoommatesBean roommatesBean = mongoTemplate.findOne(query, RoommatesBean.class, "roommatesBean");
+        System.out.println(roommatesBean);
+        return  new ModelAndView("update","roommatesBean",roommatesBean);
+    }
+
     //找房
     @GetMapping("LookingRoom")
     @ResponseBody

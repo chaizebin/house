@@ -172,9 +172,9 @@
                             </ul>
         </div>
         <div class="nav fl">
-            <a href="https://www.danke.com/" data-subject="首页">首页</a>
-            <a href="https://www.danke.com/room/bj" data-subject="找房" class="active">找房</a>
-            <a href="https://www.danke.com/recommend-list/bj?rent_type=joint_rent" data-subject="合租">合租</a>
+            <a href="http://127.0.0.1:8086/page/homePage" data-subject="首页">首页</a>
+            <a href="http://127.0.0.1:8086/page/LookingRoom" data-subject="找房" class="active">找房</a>
+            <a href="http://127.0.0.1:8086/page/roommates" data-subject="合租">合租</a>
             <a href="https://www.danke.com/recommend-list/bj?rent_type=entire_rent" data-subject="整租">整租</a>
             <a href="https://www.danke.com/rent-cycle-recommend/bj?rent_cycle=1" data-subject="月租" class="nav-owner">
                 月租
@@ -236,9 +236,9 @@
     <input type="hidden" name="" id="public-room-id" value="1376994992">
     <div class="wrapper">
         
-        <div class="intro">
-            <div class="fl container_n">
-                <a target="_blank" href="https://www.danke.com/room/bj/e%E8%9B%8B%E5%A3%B3%E5%85%AC%E5%AF%93.html">北京
+        <div class="intro" height="20" width="100">
+            <div class="fl container_n" >
+                <!--<a target="_blank" href="https://www.danke.com/room/bj/e%E8%9B%8B%E5%A3%B3%E5%85%AC%E5%AF%93.html">北京
                     蛋壳公寓</a>
                 &gt;
                 <a target="_blank" href="https://www.danke.com/room/bj">北京租房</a> &gt;
@@ -248,7 +248,7 @@
                 <a target="_blank" href="https://www.danke.com/room/bj?search=1&amp;search_text=%E8%8D%89%E6%A1%A5%E6%AC%A3%E5%9B%AD%E4%B8%89%E5%8C%BA">
                     草桥欣园三区租房
                 </a> &gt;
-                草桥 草桥欣园三区 次卧 朝南 D室
+                草桥 草桥欣园三区 次卧 朝南 D室-->
             </div>
         </div>
         <div class="room-detail">
@@ -2569,14 +2569,13 @@ D房间
             url:"/goto/CheckTheDetails",
             type:'get',
             dataType:'json',
-            id:id,
             success:function(data){
-			   alert(data);
+			   //alert(data);
                var count = "";
 			   for(var i=0;i<data.length;i++){
 				count+=
 				'<div class="room-name">'+
-                    '<h1>'+data[i].type+'</h1>'+
+                    '<h1><span id="type1">'+data[i].type+'</span></h1>'+
                     '<em>'+data[i].theSubway+'</em>'+
                 '</div>'+
                 '<div class="room-title">'+'<span>'+data[i].name+'</span>'+
@@ -2593,11 +2592,11 @@ D房间
                     '</div>'+'<div class="room-price">'+
                                 '<div class="price-list moth">'+
                                     '<label>'+'月租金'+'</label>'+
-                                    '<span>'+'<div class="room-price-sale">'+data[i].price+'<em>'+'元/月'+'</em>'+'<i>'+'付款方式&gt;'+'</i>'+'</div>'+'</span>'+
+                                    '<span>'+'<div class="room-price-sale"><span id="type2">'+data[i].price+'</span><em>'+'元/月'+'</em>'+'<i>'+'付款方式&gt;'+'</i>'+'</div>'+'</span>'+
                                 '</div>'+'</div>'+'</div>'+'<div class="room-list-box">'+
                     '<div class="room-detail-box">'+
                         '<div class="room-list">'+
-                            '<label>'+'建筑面积:'+data[i].coveredArea+'</label>'+
+                            '<label>'+'建筑面积:'+data[i].coveredArea+'㎡'+'</label>'+
                         '</div>'+
                         '<div class="room-list">'+
                             '<label>'+'编号:'+data[i].houseNumber+'</label>'+
@@ -2649,13 +2648,17 @@ D房间
     //收藏
     function shoppingTrolley(id){
         alert(id);
+        var type1=$("#type1").html();//从表单中获取值，type1为对应的表单中定义的id
+        var type2=$("#type2").html();
+        alert(type1);
+        alert(type2);
         $.ajax({
             url:'http://127.0.0.1:8086/goto/Collection',
-            type:'get',
-            data:{'id':id,'state':"1"},
-
+            type:'post',
+            data:{'id':id,'url':'url','type':type1,'price':type2},
             success:function(data){
-                layer.alert("已收藏");
+                alert(data);
+                alert("已收藏");
             }
         })
     }

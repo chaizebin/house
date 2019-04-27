@@ -10,7 +10,7 @@ public interface RoommatesService {
 
     List<RoommatesBean> queryHousingInformation();
 
-    List<CheckTheDetails> CheckTheDetails();
+    List<CheckTheDetails> CheckTheDetails(int id);
 
     List<LookingRoom> LookingRoom();
 }

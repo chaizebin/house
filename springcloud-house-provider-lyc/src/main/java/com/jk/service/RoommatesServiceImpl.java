@@ -19,8 +19,8 @@ public class RoommatesServiceImpl implements RoommatesService{
     }
 
     @Override
-    public List<CheckTheDetails> CheckTheDetails() {
-        return roommatesMapper.CheckTheDetails();
+    public List<CheckTheDetails> CheckTheDetails(int id) {
+        return roommatesMapper.CheckTheDetails(id);
     }
 
     @Override
