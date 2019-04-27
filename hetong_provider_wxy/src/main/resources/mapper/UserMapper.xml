@@ -26,11 +26,15 @@
         delete  from house_contract where id=#{id}
 
     </delete>
-    <select id="downProductlById" resultType="com.jk.model.ContractBean" parameterType="String">
-       select  * from house_contract where id=#{id}
+    <select id="downProductlById" resultType="com.jk.model.ContractBean" >
+       select  * from house_contract
     </select>
     <select id="queryHousingInformation" resultType="com.jk.model.FyBean">
   SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId
     </select>
+<sql id="sql">
+    where
 
+
+</sql>
 </mapper>

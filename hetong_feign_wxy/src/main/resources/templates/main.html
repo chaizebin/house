@@ -90,11 +90,9 @@
     function jiesuan(price){
 
             location.href="/goAlipay?price="+price;
-        alert(""+price)
     }
     function downqw(id){
-        alert(id)
-        location.href="http://192.168.1.151:8080/downProductlById?id="+9;
+        location.href="downProductlById?id="+id;
     }
     function openEmp(id){
         bootbox.dialog({
@@ -147,7 +145,6 @@
     }
     //单删
     function delContract(id){
-        alert(id);
         bootbox.confirm({
             size: "small",
             title:"提示",

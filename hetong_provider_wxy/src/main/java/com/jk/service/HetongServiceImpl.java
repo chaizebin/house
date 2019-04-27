@@ -50,9 +50,9 @@ public class HetongServiceImpl implements HetongService{
 
 
     @Override
-    public List<ContractBean> downProductlById(String id) {
+    public List<ContractBean> downProductlById() {
 
-        return userMapper.downProductlById(id);
+        return userMapper.downProductlById();
     }
 
     @Override

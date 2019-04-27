@@ -22,7 +22,7 @@ public interface HetongService {
     String delCommodity(Integer id);
 
     @RequestMapping ("downProductlById")
-    List<ContractBean> downProductlById(String id);
+    List<ContractBean> downProductlById();
     @PostMapping("queyrContract")
     HashMap<String, Object> queyrContract(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows,@RequestBody ContractBean contractBean);
     @RequestMapping ("delContract")

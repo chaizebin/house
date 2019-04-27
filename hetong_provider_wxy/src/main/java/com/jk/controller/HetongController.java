@@ -28,7 +28,6 @@ public class HetongController {
     @PostMapping("queyrContract")
     @ResponseBody
         public HashMap<String,Object> queyrContract( @RequestParam("page") Integer page, @RequestParam("rows") Integer rows, @RequestBody  ContractBean contractBean){
-        System.out.println(page+"---"+rows+"-------"+contractBean);
         return hetongService.queyrContract(page,rows,contractBean);
     }
     @RequestMapping("savecontract")
@@ -41,23 +40,10 @@ public class HetongController {
     }
     @ResponseBody
     @RequestMapping("downProductlById")//serialId是前台传来信息的id,filename是文件存放地址,这个会让选择的
-    public String downProductlById( String id, HttpServletResponse response, String filename) throws IOException {
-        //名字
-        String sheetName="合同表";
-        //标题
-        String titleName="合同表名单";
-        //字段,这个得在这写好
-        String[] headers = {"编号", "名称","规格","生产企业"};
-        //根据传来的id查询出来的list集合
-        List<ContractBean> winningDrug = hetongService.downProductlById(id);
-        String resultUrl=filename+".xlsx";
-        String pattern="yyyy-MM-dd";
-        OutputStream output = response.getOutputStream();
-        response.reset();
-        response.setHeader("Content-disposition","attachment; filename="+filename+".xls");
-        response.setContentType("application/msexcel");
-        ExportExcel.exportExcel(sheetName, titleName, headers, winningDrug, output, pattern);
-        return "success";
+    public List<ContractBean> downProductlById(){
+        return hetongService.downProductlById();
+
+
     }
     @RequestMapping("selectcontractId")
     @ResponseBody

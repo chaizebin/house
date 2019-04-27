@@ -18,7 +18,7 @@ public interface UserMapper {
 
     void updatecontract(ContractBean contractBean);
 
-    List<ContractBean> downProductlById(@Param("id")String id);
+    List<ContractBean> downProductlById();
 
     int Concount(ContractBean contractBean);
 
