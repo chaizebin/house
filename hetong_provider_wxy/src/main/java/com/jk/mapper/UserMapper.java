@@ -18,7 +18,7 @@ public interface UserMapper {
 
     void updatecontract(ContractBean contractBean);
 
-    List<ContractBean> downProductlById(Integer id);
+    List<ContractBean> downProductlById();
 
     int Concount(ContractBean contractBean);
 
@@ -27,4 +27,5 @@ public interface UserMapper {
     void delContract(Integer id);
 
     List<FyBean> queryHousingInformation();
+
 }

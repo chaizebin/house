@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="common" target="1.7" />
+      <module name="eureka" target="1.8" />
+      <module name="hetong_feign_wxy" target="1.8" />
+      <module name="hetong_provider_wxy" target="1.8" />
+      <module name="house" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

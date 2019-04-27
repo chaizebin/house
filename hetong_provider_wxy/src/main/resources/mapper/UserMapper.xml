@@ -4,32 +4,37 @@
 <mapper namespace="com.jk.mapper.UserMapper">
     <select id="Concount" resultType="int">
         SELECT count(1),rent+cash as 'price'from house_contract where 1=1
+
     </select>
     <select id="finquery" resultType="com.jk.model.ContractBean">
-       select  * ,rent+cash as 'price' from house_contract where 1=1  LIMIT #{start},#{rows}
+        select  * ,rent+cash as 'price' from house_contract where 1=1
+
+        LIMIT #{start},#{rows}
     </select>
     <insert id="savecontract" parameterType="com.jk.model.ContractBean">
         insert into house_contract(leaser,tenant,idnumber,contactaddress,contactnumber,begindate,enddate,rent,cash,housebelocated)values(
         #{leaser},#{tenant},#{idnumber},#{contactaddress},#{contactnumber},#{begindate},#{enddate},#{rent},#{cash},#{housebelocated}
         )
-
     </insert>
     <select id="selectcontractId" resultType="com.jk.model.ContractBean" parameterType="int">
         select * from house_contract where id=#{id}
     </select>
     <update id="updatecontract" parameterType="com.jk.model.ContractBean">
-        update house_contract set leaser=#{leaser},tenant=#{tenant},idnumber=#{idnumber},contactaddress=#{contactaddress},contactnumber=#{contactnumber},begindate=#{begindate},enddate=#{enddate},rent=#{rent},
-        cash=#{cash},housebelocated=#{housebelocated} where id=#{id}
+        update house_contract set leaser=#{leaser},tenant=#{tenant},idnumber=#{idnumber},contactaddress=#{contactaddress},contactnumber=#{contactnumber},begindate=#{begindate},enddate=#{enddate},rent=#{rent},cash=#{cash},housebelocated=#{housebelocated} where id=#{id}
     </update>
     <delete id="delContract" parameterType="int">
         delete  from house_contract where id=#{id}
 
     </delete>
-    <select id="downProductlById" resultType="com.jk.model.ContractBean" parameterType="int">
-       select  * from house_contract where id=#{id}
+    <select id="downProductlById" resultType="com.jk.model.ContractBean" >
+       select  * from house_contract
     </select>
     <select id="queryHousingInformation" resultType="com.jk.model.FyBean">
-       select  * from house_house
+  SELECT a.id,b.url,a.price,a.type,a.distance from house_house a LEFT JOIN house_img b on a.houseId=b.houseId
     </select>
+<sql id="sql">
+    where
 
+
+</sql>
 </mapper>

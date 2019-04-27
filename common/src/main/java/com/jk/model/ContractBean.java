@@ -109,22 +109,4 @@ public class ContractBean {
     public void setPrice(String price) {
         this.price = price;
     }
-
-    @Override
-    public String toString() {
-        return "ContractBean{" +
-                "id=" + id +
-                ", leaser='" + leaser + '\'' +
-                ", tenant='" + tenant + '\'' +
-                ", idnumber='" + idnumber + '\'' +
-                ", contactaddress='" + contactaddress + '\'' +
-                ", contactnumber=" + contactnumber +
-                ", rent=" + rent +
-                ", cash=" + cash +
-                ", begindate='" + begindate + '\'' +
-                ", enddate='" + enddate + '\'' +
-                ", housebelocated='" + housebelocated + '\'' +
-                ", price='" + price + '\'' +
-                '}';
-    }
 }
